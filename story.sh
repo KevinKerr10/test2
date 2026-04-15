@@ -1,24 +1,69 @@
 #!/bin/bash
-affection=0
+
+# --- VARIABLES ---
+affection=10
+
+# Function to decrease affection
+Lose_1Affection() {
+    affection=$((affection - 1))
+}
+
+# --- INTRO ---
+read -p "Before we begin, what is your name? " name
+
+# --- WAKE UP SCENE ---
 while true; do
-    read -p "you wake up in yor bed same as usual, alarm blaring right next to you, sun shining throught the windows, just a normal day. would you like to go outside? y/n" answer
+    echo ""
+    read -p "You wake up in your bed as usual. Your alarm is blaring right beside you, and sunlight pours through the window. Just a normal day... or is it?\nDo you want to get up and go outside? (y/n) " answer
     
-    if [ "$answer" = "y" ];then 
+    if [ "$answer" = "y" ]; then 
+        # Player chooses to get up immediately
         break 
-    elif [ "$answer" = "n" ];then
+
+    elif [ "$answer" = "n" ]; then
+        # Player stays in bed → lose affection
+        Lose_1Affection
+
+        # --- SECOND CHOICE LOOP ---
         while true; do
-            read -p "You decide to lay in bed a bit longer but you cant get the feeling that you have something to do out of your head. Will you continue to stay in bed? y/n" answer
+            echo ""
+            read -p "You decide to stay in bed a little longer, but you can't shake the feeling that you're forgetting something important.\nDo you keep lying there? (y/n) " answer
             
-            if [ "$answer" = "n" ];then
+            if [ "$answer" = "n" ]; then
+                # Player finally gets up → exit BOTH loops
                 break 2
-            elif [ "$answer" = "y" ];then
-                echo "really?"
+
+            elif [ "$answer" = "y" ]; then
+                echo "Really? You’re seriously staying in bed?"
+                Lose_1Affection
+
             else 
-                echo "please type y or n."
+                echo "Please type 'y' or 'n'."
             fi
         done
+
     else
-        echo "please type y or n."
+        echo "Please type 'y' or 'n'."
     fi
 done
-echo "You get out of bed and begin to do your usual routine, you brush your teeth, yk the whole spiel. Once you finish you swing your front door wide open and someone seems to be waiting for you just at the tip of your driveway."
+
+# --- OUTSIDE SCENE ---
+echo ""
+echo "You finally get out of bed and go through your usual routine—brushing your teeth, getting dressed, the whole deal."
+echo "Once you're done, you swing your front door open and step outside."
+
+echo ""
+echo "At the edge of your driveway, someone is waiting."
+echo "You walk closer and realize... it's a girl."
+echo "She steps toward you and begins to speak."
+
+# --- REACTION BASED ON AFFECTION ---
+echo ""
+if [ "$affection" -lt 8 ]; then
+    echo "\"Way to keep me waiting... maybe next time I just won’t bother,\" she says, clearly annoyed."
+else 
+    echo "\"Hey, $name... took you long enough,\" she says with a small smile."
+fi
+
+# --- DEBUG (optional, remove later) ---
+# echo "(Affection: $affection)"
