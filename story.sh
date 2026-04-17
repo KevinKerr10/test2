@@ -1,15 +1,23 @@
 #!/bin/bash
 
 # --- VARIABLES ---
-affection=10
-lie_meter=0
+aoi_affection=10
+aoi_lie_meter=0
+arima_affection=0
+arima_lie_meter=0
 
 # Function to decrease affection
-change_affection() {
-    affection=$((affection + $1))
+change_aoi_affection() {
+    aoi_affection=$((aoi_affection + $1))
 }
-change_lie_meter() {
-    lie_meter=$((lie_meter + $1))
+change_aoi_lie_meter() {
+    aoi_lie_meter=$((aoi_lie_meter + $1))
+}
+change_arima_affection() {
+    arima_affection=$((arima_affection + $1))
+}
+change_arima_lie_meter() {
+    arima_lie_meter=$((arima_lie_meter + $1))
 }
 
 
@@ -28,7 +36,7 @@ while true; do
 
     elif [ "$answer" = "n" ]; then
         # Player stays in bed → lose affection
-        change_affection -1
+        change_aoi_affection -1
 
         # --- SECOND CHOICE LOOP ---
         while true; do
@@ -41,7 +49,7 @@ while true; do
 
             elif [ "$answer" = "y" ]; then
                 echo "Really? You’re seriously staying in bed?"
-                change_affection -1
+                change_aoi_affection -1
 
             else 
                 echo "Please type 'y' or 'n'."
@@ -75,12 +83,12 @@ echo "1) Your just imagining it haha!"
 echo "2) I don't know I feel like something is just off today?"
 read -p "choose (1 or 2): " choice
 if [ "$choice" = 1 ];then
-    change_lie_meter 1
+    change_aoi_lie_meter 1
     echo "If you say so..."
 elif [ "$choice" = 2 ];then 
     read -p "Really, did something happen to you today? Is that why you we're more late than usual? (y/n)." answer
     if [ "$answer" = "y" ];then 
-        change_affection 1
+        change_aoi_affection 1
         echo "Okay, I guess I'll forgive you today!"
     elif [ "$answer" = "n" ];then
         echo "hmmmmm so what did happen to you today"
@@ -88,7 +96,7 @@ elif [ "$choice" = 2 ];then
         echo "2) Nah you were actually right thats why I was late."
         read -p "choose (1 or 2): " choice
         if [ "$choice" = 1 ];then
-            change_lie_meter 1
+            change_aoi_lie_meter 1
             echo "Wow I hope your ok."
         elif [ "$choice" = 2 ];then
             echo "ha! I knew it."
@@ -101,7 +109,7 @@ elif [ "$choice" = 2 ];then
 else 
     echo "Please choose 1 or 2"
 fi
-read -p "so did you finish your english homework? (y/n)" answer
+read -p "Changing the subject here but I barley managed to finisg my homework, did you finish your english homework? (y/n)" answer
     if [ "$answer" = "y" ];then
         echo "Wow thats unusual I thought you would've procrasitnated like usual why the sudden change of heart.?"
         echo "1) I was feeling motivated yesterday!"
@@ -110,8 +118,8 @@ read -p "so did you finish your english homework? (y/n)" answer
         read -p "(Choose 1, 2, or 3)" choice
 
         case $choice in 
-        1)  change_affection 1
-            change_lie_meter 1
+        1)  change_aoi_affection 1
+            change_aoi_lie_meter 1
             echo "I guess even someone like you can choose to do homework somtimes."
             ;;
         2)  read -p "really?.. Aren't you usually watching anime or something in your free time? (y/n)" answer
@@ -130,6 +138,67 @@ read -p "so did you finish your english homework? (y/n)" answer
         echo "just like always lol."
     else echo "Please answer with y, or n."
     fi
+    echo "You guys continue walking down the street, you have no idea where you ae going but it looks like alot of students in the same uniform as you are headed in the saem direction."
+    sleep 1
+    echo "After walking for a little bit mroea  school comes into view."
+    echo "Hey Kevin before I goodluck with your first class I hope you make some great friends!"
+    echo "1) Don't worry I'll have the whole school under my command"
+    echo "2) Don't expect to much of me!"
+    echo "3) You too!"
+    read -p "(Choose 1, 2, or 3)" choice
+
+    case $choice in 
+    1) echo "Hahaha I'd like to see the day."
+        ;;
+    2) echo "Don't doubt youself, You've got this."
+        ;;
+    3) change_aoi_affection 1
+        echo "Thanks!"
+        ;;
+    esac
+    echo "You both walk off to your designated classes."
+    sleep 1
+    echo "Upon arriving to the classroom you scan around, the teacher seems to have not arrived yet."
+    echo "I guess its time to choose where to sit you think to yourself"
+    echo "1) Back corner near the window"
+    echo "2) Back corner near the wall"
+    echo "3) front row near the window"
+    echo "4) front row near the door"
+    read -p "(Choose 1,2,3, or 4)" choice
+
+    case $choice in
+    1) 
+        echo "you walk to the back corner, the mc seat."
+        echo "The kid in front of you turns around. Going for the mc seat I see, I'm Arima Yamaguchi btw. I look forward to working with you."
+        echo "1) Screw you!"
+        echo "2) Same here I'm $name btw"
+        echo "3) Better not steal my spotlight!"
+        read -p "(choose 1,2, or 3)" choice
+
+        case $choice in
+        1) 
+            change_arima_affection -3
+            echo "Wow that was unexpectedly rude"
+            echo "Well I hope you warm up to me in the future"
+            ;;
+        2)
+            change_arima_affection 2
+            echo "For a moment I thought you'd say something like screw you lol, who would do that."
+            echo "Well I'm glad I have someone to talk to now atleast."
+            ;;
+        3) 
+            change_arima_affection 1
+            echo "I'll steal all your spotlight haha!"
+            ;;
+        esac
+        ;;
+    2)
+        echo
+
+
+
+
+
 
 
 
