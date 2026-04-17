@@ -102,7 +102,7 @@ else
     echo "Please choose 1 or 2"
 fi
 read -p "so did you finish your english homework? (y/n)" answer
-    if [ "$answer" = y ];then
+    if [ "$answer" = "y" ];then
         echo "Wow thats unusual I thought you would've procrasitnated like usual why the sudden change of heart.?"
         echo "1) I was feeling motivated yesterday!"
         echo "2) I had nothing else to do."
@@ -114,7 +114,7 @@ read -p "so did you finish your english homework? (y/n)" answer
             change_lie_meter 1
             echo "I guess even someone like you can choose to do homework somtimes."
             ;;
-        2)  read -p "really?.. Aren't you usually watching anime or something in your free time? (y/n)"
+        2)  read -p "really?.. Aren't you usually watching anime or something in your free time? (y/n)" answer
             if [ "$answer" = "y" ];then
                 echo "Sometimes I never understand you sigh."
             elif [ "$answer" = "n" ];then
