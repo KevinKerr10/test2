@@ -5,6 +5,8 @@ aoi_affection=10
 aoi_lie_meter=0
 arima_affection=0
 arima_lie_meter=0
+mizurin_affection=0
+mizurin_lie_meter=0
 
 # Function to decrease affection
 change_aoi_affection() {
@@ -19,7 +21,12 @@ change_arima_affection() {
 change_arima_lie_meter() {
     arima_lie_meter=$((arima_lie_meter + $1))
 }
-
+change_mizurin_affection() {
+    mizurin_affection=$((mizurin_affection + $1))
+}
+change_mizurin_lie_meter() {
+    mizurin_lie_meter=$((mizurin_lie_meter + $1))
+}
 
 
 # --- INTRO ---
@@ -193,7 +200,45 @@ read -p "Changing the subject here but I barley managed to finisg my homework, d
         esac
         ;;
     2)
-        echo
+        echo "You walk to the back corner near the wall, now this is a nice seat."
+        echo "Once you finally settle down into you new seat the girl next to you turns in your direction."
+        read -p "Hi! I'm Mizurin Kitagawa! Your Aoi's friend right! (y/n)" answer
+        if [ "$answer" = "y" ];then
+            change_arima_affection 2
+            echo "Great so I wasn't just imagning it, Aoi told me about you I hope we can be great friends this year!"
+            echo "1) Same here I hope we can be great friends."
+            echo "2) I hope I can get some quiet this year!"
+            echo "3) No you were imagining it you still in my genjustu."
+            read -p "(choose 1,2, or 3)"
+
+            case $choice in
+            1)
+        
+
+
+        elif [ "$answer" = "n" ];then
+            change_mizurin_lie_meter 1
+            echo "Whattttttt? I could swear it was you"
+            echo "Just kidding I know your lying hehe."
+            echo "Whats your name? Aoi didn't really tell me that."
+            echo "1) Oh, I'm $name. Thought I mightv'e been able to fool you but I guess not..."
+            echo "2) I'm $name, didn't know Aoi's friends were so extraverted. sigh"
+            echo "3) I'm Batman."
+            read -p "(choose 1,2, or 3)" choice
+
+
+            case $choice in 
+            1) 
+                echo "Don't underestimate my memory $name!"
+                ;;
+            2) 
+                echo "Oh you bet we are!... or atleast I am, and I won't let you escape hehe, so there is no lying your way out."
+                ;;
+            3)  
+                echo "...... uhhh she said you were weird but I sure wasn't expecting that lol. Well nice to meet you Batman?"
+                ;;
+            esac
+        else
 
 
 
