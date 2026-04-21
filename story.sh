@@ -8,6 +8,7 @@ arima_lie_meter=0           # Tracks lies to Arima (not used yet)
 mizurin_affection=0         # Mizurin's affection level
 mizurin_lie_meter=0         # Tracks lies to Mizurin
 
+
 # Function to change affection
 change_aoi_affection() {
     aoi_affection=$((aoi_affection + $1))   # Adds/subtracts value from Aoi affection
@@ -37,27 +38,26 @@ while true; do   # Loop continues until player gets up
     read -p "You wake up in your bed as usual. Your alarm is blaring right beside you, and sunlight pours through the window. Just a normal day... or is it? Do you want to get up and go outside? (y/n) " answer
     
     if [ "$answer" = "y" ]; then 
-        break   # Exit loop if player chooses to get up
 
+        break   # Exit loop if player chooses to get up
     elif [ "$answer" = "n" ]; then
         change_aoi_affection -1   # Lose affection for staying in bed
 
         while true; do   # Inner loop for repeated staying in bed
+
             echo ""
             read -p "You decide to stay in bed a little longer, but you can't shake the feeling that you're forgetting something important. Do you keep lying there? (y/n) " answer
             
             if [ "$answer" = "n" ]; then
-                break 2   # Break out of BOTH loops
 
+                break 2   # Break out of BOTH loops
             elif [ "$answer" = "y" ]; then
                 echo "Really? You’re seriously staying in bed?"
                 change_aoi_affection -1   # Additional affection loss
-
             else 
                 echo "Please type 'y' or 'n'."   # Input validation
             fi
         done
-
     else
         echo "Please type 'y' or 'n'."   # Input validation
     fi
@@ -75,22 +75,21 @@ echo "She steps toward you and begins to speak."
 
 # --- REACTION BASED ON AFFECTION ---
 echo ""
-if [ "$aoi_affection" -lt 8 ]; then   # Checks if Aoi affection is low
+if [ "$aoi_affection" -lt 8 ]; then
     echo "\"Way to keep me waiting... maybe next time I just won’t bother,\" she says, clearly annoyed."
 else 
     echo "\"Hey, $name... took you long enough,\" she says with a small smile."
 fi
-
 echo "You seem weird to me. Do you not remember me or something?"
 echo "1) You're just imagining it haha!"
 echo "2) I don't know, I feel like something is just off today?"
 
 read -p "Choose (1 or 2): " choice   # Player choice input
 
-if [ "$choice" = 1 ]; then
+if [ "$choice" = "1" ]; then
     change_aoi_lie_meter 1   # Player lies → increase lie meter
     echo "If you say so..."
-elif [ "$choice" = 2 ]; then 
+elif [ "$choice" = "2" ]; then 
     read -p "Really, did something happen to you today? Is that why you were later than usual? (y/n) " answer
     if [ "$answer" = "y" ]; then 
         change_aoi_affection 1   # Honest answer → gain affection
@@ -119,7 +118,6 @@ elif [ "$choice" = 2 ]; then
 else 
     echo "Please choose 1 or 2."   # Invalid input
 fi
-
 read -p "Changing the subject here, but I barely managed to finish my homework. Did you finish your English homework? (y/n) " answer
 
 if [ "$answer" = "y" ]; then
@@ -133,6 +131,7 @@ if [ "$answer" = "y" ]; then
     1)
         change_aoi_affection 1   # Gain affection
         change_aoi_lie_meter 1   # But also lying
+
         echo "I guess even someone like you can choose to do homework sometimes."
         ;;
     2)
@@ -152,7 +151,6 @@ if [ "$answer" = "y" ]; then
         echo "Please choose 1, 2, or 3."
         ;;
     esac
-
 elif [ "$answer" = "n" ]; then
     echo "Just like always lol."
 else 
@@ -160,7 +158,9 @@ else
 fi
 
 echo "You guys continue walking down the street. You have no idea where you are going, but it looks like a lot of students in the same uniform as you are headed in the same direction."
+
 sleep 1   # Pause for pacing
+
 echo "After walking for a little bit more, a school comes into view."
 echo "Hey $name, before I go, good luck with your first class. I hope you make some great friends!"
 
@@ -178,7 +178,9 @@ case $choice in
     echo "Don't doubt yourself. You've got this."
     ;;
 3)
+
     change_aoi_affection 1   # Positive response → gain affection
+
     echo "Thanks!"
     ;;
 *)
@@ -187,7 +189,9 @@ case $choice in
 esac
 
 echo "You both walk off to your designated classes."
+
 sleep 1   # Pause
+
 echo "Upon arriving at the classroom, you scan around. The teacher seems to have not arrived yet."
 echo "I guess it's time to choose where to sit, you think to yourself."
 
@@ -211,17 +215,23 @@ case $choice in
 
     case $choice in
     1) 
+
         change_arima_affection -3   # Major negative reaction
+
         echo "Wow, that was unexpectedly rude."
         echo "Well, I hope you warm up to me in the future."
         ;;
     2)
+
         change_arima_affection 2   # Positive relationship gain
+
         echo "For a moment, I thought you'd say something like screw you lol, who would do that."
         echo "Well, I'm glad I have someone to talk to now at least."
         ;;
     3) 
+
         change_arima_affection 1   # Small positive
+
         echo "I'll steal all your spotlight haha!"
         ;;
     *)
@@ -229,7 +239,6 @@ case $choice in
         ;;
     esac
     ;;
-
 2)
     echo "You walk to the back corner near the wall, now this is a nice seat."
     echo "Once you finally settle down into your new seat, the girl next to you turns in your direction."
@@ -237,7 +246,9 @@ case $choice in
     read -p "Hi! I'm Mizurin Kitagawa! You're Aoi's friend, right? (y/n) " answer
 
     if [ "$answer" = "y" ]; then
+
         change_mizurin_affection 2   # Gain affection for honesty
+
         echo "Great, so I wasn't just imagining it. Aoi told me about you. I hope we can be great friends this year!"
 
         echo "1) Same here, I hope we can be great friends."
@@ -260,9 +271,10 @@ case $choice in
             echo "Please choose 1, 2, or 3."
             ;;
         esac
-
     elif [ "$answer" = "n" ]; then
+
         change_mizurin_lie_meter 1   # Lie detected
+
         echo "Whattttttt? I could swear it was you."
         echo "Just kidding, I know you're lying hehe."
         echo "What's your name? Aoi didn't really tell me that."
@@ -287,7 +299,6 @@ case $choice in
             echo "Please choose 1, 2, or 3."
             ;;
         esac
-
     else
         echo "Please choose y or n."
     fi
@@ -296,3 +307,4 @@ case $choice in
     echo "Please choose 1, 2, 3, or 4."
     ;;
 esac
+
