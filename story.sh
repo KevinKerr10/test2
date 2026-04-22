@@ -84,78 +84,106 @@ echo "You seem weird to me. Do you not remember me or something?"
 echo "1) You're just imagining it haha!"
 echo "2) I don't know, I feel like something is just off today?"
 
-read -p "Choose (1 or 2): " choice   # Player choice input
+while true; do
 
-if [ "$choice" = "1" ]; then
-    change_aoi_lie_meter 1   # Player lies → increase lie meter
-    echo "If you say so..."
-elif [ "$choice" = "2" ]; then 
-    read -p "Really, did something happen to you today? Is that why you were later than usual? (y/n) " answer
-    if [ "$answer" = "y" ]; then 
-        change_aoi_affection 1   # Honest answer → gain affection
-        echo "Okay, I guess I'll forgive you today!"
-    elif [ "$answer" = "n" ]; then
-        echo "Hmmmmm, so what did happen to you today?"
-        echo "1) I tripped on my stairs."
-        echo "2) Nah, you were actually right, that's why I was late."
-        read -p "Choose (1 or 2): " choice
+    read -p "Choose (1 or 2): " choice   # Player choice input
 
-        case $choice in
-        1)
-            change_aoi_lie_meter 1   # Lie again
-            echo "Wow, I hope you're okay."
-            ;;
-        2)
-            echo "Ha! I knew it."   # Truth option
-            ;;
-        *)
-            echo "Please choose 1 or 2."   # Invalid input
-            ;;
-        esac
-    else
-        echo "Please choose y or n."   # Invalid input
+    if [ "$choice" = "1" ]; then
+        change_aoi_lie_meter 1   # Player lies → increase lie meter
+        echo "If you say so..."
+        break
+    elif [ "$choice" = "2" ]; then 
+        while true; do
+            read -p "Really, did something happen to you today? Is that why you were later than usual? (y/n) " answer
+
+            if [ "$answer" = "y" ]; then 
+                change_aoi_affection 1   # Honest answer → gain affection
+                echo "Okay, I guess I'll forgive you today!"
+                break 2
+            elif [ "$answer" = "n" ]; then
+                echo "Hmmmmm, so what did happen to you today?"
+                echo "1) I tripped on my stairs."
+                echo "2) Nah, you were actually right, that's why I was late."
+                while true; do
+
+                    read -p "Choose (1 or 2): " choice
+
+                    case $choice in
+                    1)
+                        change_aoi_lie_meter 1   # Lie again
+                        echo "Wow, I hope you're okay."
+                        break 3
+                        ;;
+                    2)
+                        echo "Ha! I knew it."   # Truth option
+                        break 3
+                        ;;
+                    *)
+                        echo "Please choose 1 or 2."   # Invalid input
+                        ;;
+                    esac
+                done
+            else
+                echo "Please choose y or n."   # Invalid input
+            fi
+        done
+    else 
+        echo "Please choose 1 or 2."   # Invalid input
     fi
-else 
-    echo "Please choose 1 or 2."   # Invalid input
-fi
-read -p "Changing the subject here, but I barely managed to finish my homework. Did you finish your English homework? (y/n) " answer
+done
 
-if [ "$answer" = "y" ]; then
-    echo "Wow, that's unusual. I thought you would've procrastinated like usual. Why the sudden change of heart?"
-    echo "1) I was feeling motivated yesterday!"
-    echo "2) I had nothing else to do."
-    echo "3) I didn't actually do it."
-    read -p "(Choose 1, 2, or 3): " choice
+while true; do
 
-    case $choice in 
-    1)
-        change_aoi_affection 1   # Gain affection
-        change_aoi_lie_meter 1   # But also lying
+    read -p "Changing the subject here, but I barely managed to finish my homework. Did you finish your English homework? (y/n) " answer
 
-        echo "I guess even someone like you can choose to do homework sometimes."
-        ;;
-    2)
-        read -p "Really?.. Aren't you usually watching anime or something in your free time? (y/n) " answer
-        if [ "$answer" = "y" ]; then
-            echo "Sometimes I never understand you, sigh."
-        elif [ "$answer" = "n" ]; then
-            echo "I could swear that's all you would do. Whatever, I guess I was imagining it."
-        else 
-            echo "Please answer with y or n."
-        fi
-        ;;
-    3)
-        echo "That's more like the $name I know lol!"
-        ;;
-    *)
-        echo "Please choose 1, 2, or 3."
-        ;;
-    esac
-elif [ "$answer" = "n" ]; then
-    echo "Just like always lol."
-else 
-    echo "Please answer with y or n."
-fi
+    if [ "$answer" = "y" ]; then
+        echo "Wow, that's unusual. I thought you would've procrastinated like usual. Why the sudden change of heart?"
+        echo "1) I was feeling motivated yesterday!"
+        echo "2) I had nothing else to do."
+        echo "3) I didn't actually do it."
+        while true; do
+
+            read -p "(Choose 1, 2, or 3): " choice
+
+            case $choice in 
+            1)
+                change_aoi_affection 1   # Gain affection
+                change_aoi_lie_meter 1   # But also lying
+
+                echo "I guess even someone like you can choose to do homework sometimes."
+                break 2
+                ;;
+            2)
+                while true; do
+
+                    read -p "Really?.. Aren't you usually watching anime or something in your free time? (y/n) " answer
+                    if [ "$answer" = "y" ]; then
+                        echo "Sometimes I never understand you, sigh."
+                        break 3
+                    elif [ "$answer" = "n" ]; then
+                        echo "I could swear that's all you would do. Whatever, I guess I was imagining it."
+                        break 3
+                    else 
+                        echo "Please answer with y or n."
+                    fi
+                done 
+                ;;
+            3)
+                echo "That's more like the $name I know lol!"
+                break 2
+                ;;
+            *)
+                echo "Please choose 1, 2, or 3."
+                ;;
+            esac
+        done
+    elif [ "$answer" = "n" ]; then
+        echo "Just like always lol."
+        break
+    else 
+        echo "Please answer with y or n."
+    fi
+done
 
 echo "You guys continue walking down the street. You have no idea where you are going, but it looks like a lot of students in the same uniform as you are headed in the same direction."
 
@@ -168,25 +196,31 @@ echo "1) Don't worry, I'll have the whole school under my command."
 echo "2) Don't expect too much of me!"
 echo "3) You too!"
 
-read -p "(Choose 1, 2, or 3): " choice
+while true; do
 
-case $choice in 
-1)
-    echo "Hahaha, I'd like to see the day."
-    ;;
-2)
-    echo "Don't doubt yourself. You've got this."
-    ;;
-3)
+    read -p "(Choose 1, 2, or 3): " choice
 
-    change_aoi_affection 1   # Positive response → gain affection
+    case $choice in 
+    1)
+        echo "Hahaha, I'd like to see the day."
+        break
+        ;;
+    2)
+        echo "Don't doubt yourself. You've got this."
+        break
+        ;;
+    3)
 
-    echo "Thanks!"
-    ;;
-*)
-    echo "Please choose 1, 2, or 3."
-    ;;
-esac
+        change_aoi_affection 1   # Positive response → gain affection
+
+        echo "Thanks!"
+        break
+        ;;
+    *)
+        echo "Please choose 1, 2, or 3."
+        ;;
+    esac
+done
 
 echo "You both walk off to your designated classes."
 
@@ -200,111 +234,134 @@ echo "2) Back corner near the wall"
 echo "3) Front row near the window"
 echo "4) Front row near the door"
 
-read -p "(Choose 1, 2, 3, or 4): " choice
+while true; do
 
-case $choice in
-1) 
-    echo "You walk to the back corner, the MC seat."
-    echo "The kid in front of you turns around. Going for the MC seat, I see. I'm Arima Yamaguchi, by the way. I look forward to working with you."
-
-    echo "1) Screw you!"
-    echo "2) Same here, I'm $name by the way."
-    echo "3) Better not steal my spotlight!"
-
-    read -p "(Choose 1, 2, or 3): " choice
+    read -p "(Choose 1, 2, 3, or 4): " choice
 
     case $choice in
     1) 
+        echo "You walk to the back corner, the MC seat."
+        echo "The kid in front of you turns around. Going for the MC seat, I see. I'm Arima Yamaguchi, by the way. I look forward to working with you."
 
-        change_arima_affection -3   # Major negative reaction
+        echo "1) Screw you!"
+        echo "2) Same here, I'm $name by the way."
+        echo "3) Better not steal my spotlight!"
 
-        echo "Wow, that was unexpectedly rude."
-        echo "Well, I hope you warm up to me in the future."
+        while true; do
+
+            read -p "(Choose 1, 2, or 3): " choice
+
+            case $choice in
+            1) 
+
+                change_arima_affection -3   # Major negative reaction
+
+                echo "Wow, that was unexpectedly rude."
+                echo "Well, I hope you warm up to me in the future."
+                break 2
+                ;;
+            2)
+
+                change_arima_affection 2   # Positive relationship gain
+
+                echo "For a moment, I thought you'd say something like screw you lol, who would do that."
+                echo "Well, I'm glad I have someone to talk to now at least."
+                break 2
+                ;;
+            3) 
+
+                change_arima_affection 1   # Small positive
+
+                echo "I'll steal all your spotlight haha!"
+                break 2
+                ;;
+            *)
+                echo "Please choose 1, 2, or 3."
+                ;;
+            esac
+        done   
         ;;
     2)
+        echo "You walk to the back corner near the wall, now this is a nice seat."
+        echo "Once you finally settle down into your new seat, the girl next to you turns in your direction."
+        while true; do
 
-        change_arima_affection 2   # Positive relationship gain
+            read -p "Hi! I'm Mizurin Kitagawa! You're Aoi's friend, right? (y/n) " answer
 
-        echo "For a moment, I thought you'd say something like screw you lol, who would do that."
-        echo "Well, I'm glad I have someone to talk to now at least."
-        ;;
-    3) 
+            if [ "$answer" = "y" ]; then
 
-        change_arima_affection 1   # Small positive
+                change_mizurin_affection 2   # Gain affection for honesty
 
-        echo "I'll steal all your spotlight haha!"
+                echo "Great, so I wasn't just imagining it. Aoi told me about you. I hope we can be great friends this year!"
+
+                echo "1) Same here, I hope we can be great friends."
+                echo "2) I hope I can get some quiet this year!"
+                echo "3) No, you were imagining it, you're still in my genjutsu."
+
+                while true; do 
+
+                    read -p "(Choose 1, 2, or 3): " choice
+
+                    case $choice in
+                    1)
+                        echo "Yay! I'm looking forward to it!"
+                        break 3
+                         ;;
+                    2)
+                        echo "Ehh?? That's kinda mean!"
+                        break 3
+                        ;;
+                    3)
+                        echo "Whaaat?? That's scary..."
+                        break 3
+                        ;;
+                    *)
+                        echo "Please choose 1, 2, or 3."
+                        ;;
+                    esac
+                done
+            elif [ "$answer" = "n" ]; then
+
+                change_mizurin_lie_meter 1   # Lie detected
+
+                echo "Whattttttt? I could swear it was you."
+                echo "Just kidding, I know you're lying hehe."
+                echo "What's your name? Aoi didn't really tell me that."
+
+                echo "1) Oh, I'm $name. Thought I might've been able to fool you but I guess not..."
+                echo "2) I'm $name, didn't know Aoi's friends were so extroverted. Sigh."
+                echo "3) I'm Batman."
+
+                while true; do
+
+                    read -p "(Choose 1, 2, or 3): " choice
+
+                    case $choice in 
+                    1) 
+                        echo "Don't underestimate my memory, $name!"
+                        break 3
+                        ;;
+                    2) 
+                        echo "Oh you bet we are!... or at least I am, and I won't let you escape hehe."
+                        break 3
+                        ;;
+                    3)  
+                        echo "...... uhhh she said you were weird but I sure wasn't expecting that lol. Well nice to meet you... Batman?"
+                        break 3
+                        ;;
+                    *)
+                        echo "Please choose 1, 2, or 3."
+                        ;;
+                    esac
+                done
+            else
+                echo "Please choose y or n."
+            fi
+        done
         ;;
     *)
-        echo "Please choose 1, 2, or 3."
+        echo "Please choose 1, 2, 3, or 4."
         ;;
     esac
-    ;;
-2)
-    echo "You walk to the back corner near the wall, now this is a nice seat."
-    echo "Once you finally settle down into your new seat, the girl next to you turns in your direction."
-
-    read -p "Hi! I'm Mizurin Kitagawa! You're Aoi's friend, right? (y/n) " answer
-
-    if [ "$answer" = "y" ]; then
-
-        change_mizurin_affection 2   # Gain affection for honesty
-
-        echo "Great, so I wasn't just imagining it. Aoi told me about you. I hope we can be great friends this year!"
-
-        echo "1) Same here, I hope we can be great friends."
-        echo "2) I hope I can get some quiet this year!"
-        echo "3) No, you were imagining it, you're still in my genjutsu."
-
-        read -p "(Choose 1, 2, or 3): " choice
-
-        case $choice in
-        1)
-            echo "Yay! I'm looking forward to it!"
-            ;;
-        2)
-            echo "Ehh?? That's kinda mean!"
-            ;;
-        3)
-            echo "Whaaat?? That's scary..."
-            ;;
-        *)
-            echo "Please choose 1, 2, or 3."
-            ;;
-        esac
-    elif [ "$answer" = "n" ]; then
-
-        change_mizurin_lie_meter 1   # Lie detected
-
-        echo "Whattttttt? I could swear it was you."
-        echo "Just kidding, I know you're lying hehe."
-        echo "What's your name? Aoi didn't really tell me that."
-
-        echo "1) Oh, I'm $name. Thought I might've been able to fool you but I guess not..."
-        echo "2) I'm $name, didn't know Aoi's friends were so extroverted. Sigh."
-        echo "3) I'm Batman."
-
-        read -p "(Choose 1, 2, or 3): " choice
-
-        case $choice in 
-        1) 
-            echo "Don't underestimate my memory, $name!"
-            ;;
-        2) 
-            echo "Oh you bet we are!... or at least I am, and I won't let you escape hehe."
-            ;;
-        3)  
-            echo "...... uhhh she said you were weird but I sure wasn't expecting that lol. Well nice to meet you... Batman?"
-            ;;
-        *)
-            echo "Please choose 1, 2, or 3."
-            ;;
-        esac
-    else
-        echo "Please choose y or n."
-    fi
-    ;;
-*)
-    echo "Please choose 1, 2, 3, or 4."
-    ;;
-esac
+done
 
