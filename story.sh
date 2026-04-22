@@ -29,6 +29,12 @@ change_mizurin_lie_meter() {
     mizurin_lie_meter=$((mizurin_lie_meter + $1))   # Modifies Mizurin lie counter
 }
 
+# Function to pause and wait for player
+pause() {
+    sleep 2
+    read -r -p "Press Enter to continue" 
+}
+
 # --- INTRO ---
 read -p "Before we begin, what is your name? " name   # Gets player's name input
 
@@ -67,12 +73,14 @@ done
 echo ""
 echo "You finally get out of bed and go through your usual routine—brushing your teeth, getting dressed, the whole deal."
 echo "Once you're done, you swing your front door open and step outside."
-
+pause
 echo ""
 echo "At the edge of your driveway, someone is waiting."
+pause
 echo "You walk closer and realize... it's a girl."
+pause
 echo "She steps toward you and begins to speak."
-
+pause
 # --- REACTION BASED ON AFFECTION ---
 echo ""
 if [ "$aoi_affection" -lt 8 ]; then
@@ -80,17 +88,48 @@ if [ "$aoi_affection" -lt 8 ]; then
 else 
     echo "\"Hey, $name... took you long enough,\" she says with a small smile."
 fi
-echo "You seem weird to me. Do you not remember me or something?"
-echo "1) You're just imagining it haha!"
-echo "2) I don't know, I feel like something is just off today?"
 
 while true; do
+    echo "1) Do I know you?"
+    echo "2) Sorry how do I pronounce your name again"
+    echo "3) My bad good to see you again!"
+    read -p "(Choose 1,2, or 3)" choice
+
+    case $choice in
+    1) 
+        echo "Haha funny joke.... I'm your good friend Aoi dummy"
+        pause
+        break
+        ;;
+    2)  
+        echo "/"Aoi like Ah-oy, you seemed to know before.."/ She says squinting at you"
+        pause
+        break
+        ;;
+    3) 
+        aoi_lie_meter 1
+        echo "Yea better not hold me up again $name, or I'll egg your house while waiting"
+        pause
+        break
+        ;;
+    *)
+        echo "Make sure to select 1,2, or 3"
+        ;;
+    esac
+done
+
+while true; do
+
+    echo "You seem weird to me. Is something up with your memory?"
+    echo "1) You're just imagining it haha!"
+    echo "2) I don't know, I feel like something is just off today?"
 
     read -p "Choose (1 or 2): " choice   # Player choice input
 
     if [ "$choice" = "1" ]; then
         change_aoi_lie_meter 1   # Player lies → increase lie meter
         echo "If you say so..."
+        pause
         break
     elif [ "$choice" = "2" ]; then 
         while true; do
@@ -99,23 +138,26 @@ while true; do
             if [ "$answer" = "y" ]; then 
                 change_aoi_affection 1   # Honest answer → gain affection
                 echo "Okay, I guess I'll forgive you today!"
+                pause
                 break 2
             elif [ "$answer" = "n" ]; then
-                echo "Hmmmmm, so what did happen to you today?"
-                echo "1) I tripped on my stairs."
-                echo "2) Nah, you were actually right, that's why I was late."
                 while true; do
 
+                    echo "Hmmmmm, so what did happen to you today?"
+                    echo "1) I tripped on my stairs."
+                    echo "2) Nah, you were actually right, that's why I was late."
                     read -p "Choose (1 or 2): " choice
 
                     case $choice in
                     1)
                         change_aoi_lie_meter 1   # Lie again
                         echo "Wow, I hope you're okay."
+                        pause
                         break 3
                         ;;
                     2)
                         echo "Ha! I knew it."   # Truth option
+                        pause
                         break 3
                         ;;
                     *)
@@ -137,12 +179,11 @@ while true; do
     read -p "Changing the subject here, but I barely managed to finish my homework. Did you finish your English homework? (y/n) " answer
 
     if [ "$answer" = "y" ]; then
-        echo "Wow, that's unusual. I thought you would've procrastinated like usual. Why the sudden change of heart?"
-        echo "1) I was feeling motivated yesterday!"
-        echo "2) I had nothing else to do."
-        echo "3) I didn't actually do it."
         while true; do
-
+            echo "Wow, that's unusual. I thought you would've procrastinated like usual. Why the sudden change of heart?"
+            echo "1) I was feeling motivated yesterday!"
+            echo "2) I had nothing else to do."
+            echo "3) I didn't actually do it."
             read -p "(Choose 1, 2, or 3): " choice
 
             case $choice in 
@@ -151,6 +192,7 @@ while true; do
                 change_aoi_lie_meter 1   # But also lying
 
                 echo "I guess even someone like you can choose to do homework sometimes."
+                pause
                 break 2
                 ;;
             2)
@@ -159,9 +201,11 @@ while true; do
                     read -p "Really?.. Aren't you usually watching anime or something in your free time? (y/n) " answer
                     if [ "$answer" = "y" ]; then
                         echo "Sometimes I never understand you, sigh."
+                        pause
                         break 3
                     elif [ "$answer" = "n" ]; then
                         echo "I could swear that's all you would do. Whatever, I guess I was imagining it."
+                        pause
                         break 3
                     else 
                         echo "Please answer with y or n."
@@ -170,6 +214,7 @@ while true; do
                 ;;
             3)
                 echo "That's more like the $name I know lol!"
+                pause
                 break 2
                 ;;
             *)
@@ -179,6 +224,7 @@ while true; do
         done
     elif [ "$answer" = "n" ]; then
         echo "Just like always lol."
+        pause
         break
     else 
         echo "Please answer with y or n."
@@ -186,27 +232,29 @@ while true; do
 done
 
 echo "You guys continue walking down the street. You have no idea where you are going, but it looks like a lot of students in the same uniform as you are headed in the same direction."
-
-sleep 1   # Pause for pacing
-
-echo "After walking for a little bit more, a school comes into view."
-echo "Hey $name, before I go, good luck with your first class. I hope you make some great friends!"
-
-echo "1) Don't worry, I'll have the whole school under my command."
-echo "2) Don't expect too much of me!"
-echo "3) You too!"
+pause
 
 while true; do
+
+    echo "After walking for a little bit more, a school comes into view."
+    pause
+    echo "Hey $name, before I go, good luck with your first class. I hope you make some great friends!"
+
+    echo "1) Don't worry, I'll have the whole school under my command."
+    echo "2) Don't expect too much of me!"
+    echo "3) You too!"
 
     read -p "(Choose 1, 2, or 3): " choice
 
     case $choice in 
     1)
         echo "Hahaha, I'd like to see the day."
+        pause
         break
         ;;
     2)
         echo "Don't doubt yourself. You've got this."
+        pause
         break
         ;;
     3)
@@ -214,6 +262,7 @@ while true; do
         change_aoi_affection 1   # Positive response → gain affection
 
         echo "Thanks!"
+        pause
         break
         ;;
     *)
@@ -223,32 +272,29 @@ while true; do
 done
 
 echo "You both walk off to your designated classes."
-
-sleep 1   # Pause
-
-echo "Upon arriving at the classroom, you scan around. The teacher seems to have not arrived yet."
-echo "I guess it's time to choose where to sit, you think to yourself."
-
-echo "1) Back corner near the window"
-echo "2) Back corner near the wall"
-echo "3) Front row near the window"
-echo "4) Front row near the door"
+pause
 
 while true; do
+    echo "Upon arriving at the classroom, you scan around. The teacher seems to have not arrived yet."
+    pause
+    echo "I guess it's time to choose where to sit."
 
+    echo "1) Back corner near the window"
+    echo "2) Back corner near the wall"
+    echo "3) Front row near the window"
+    echo "4) Front row near the door"
     read -p "(Choose 1, 2, 3, or 4): " choice
 
     case $choice in
     1) 
-        echo "You walk to the back corner, the MC seat."
-        echo "The kid in front of you turns around. Going for the MC seat, I see. I'm Arima Yamaguchi, by the way. I look forward to working with you."
-
-        echo "1) Screw you!"
-        echo "2) Same here, I'm $name by the way."
-        echo "3) Better not steal my spotlight!"
-
         while true; do
+            echo "You walk to the back corner, the MC seat."
+            pause
+            echo "The kid in front of you turns around. Going for the MC seat, I see. I'm Arima Yamaguchi, by the way. I look forward to working with you."
 
+            echo "1) Screw you!"
+            echo "2) Same here, I'm $name by the way."
+            echo "3) Better not steal my spotlight!"
             read -p "(Choose 1, 2, or 3): " choice
 
             case $choice in
@@ -258,6 +304,7 @@ while true; do
 
                 echo "Wow, that was unexpectedly rude."
                 echo "Well, I hope you warm up to me in the future."
+                pause
                 break 2
                 ;;
             2)
@@ -266,6 +313,7 @@ while true; do
 
                 echo "For a moment, I thought you'd say something like screw you lol, who would do that."
                 echo "Well, I'm glad I have someone to talk to now at least."
+                pause
                 break 2
                 ;;
             3) 
@@ -273,6 +321,7 @@ while true; do
                 change_arima_affection 1   # Small positive
 
                 echo "I'll steal all your spotlight haha!"
+                pause
                 break 2
                 ;;
             *)
@@ -284,6 +333,7 @@ while true; do
     2)
         echo "You walk to the back corner near the wall, now this is a nice seat."
         echo "Once you finally settle down into your new seat, the girl next to you turns in your direction."
+        pause
         while true; do
 
             read -p "Hi! I'm Mizurin Kitagawa! You're Aoi's friend, right? (y/n) " answer
@@ -292,27 +342,28 @@ while true; do
 
                 change_mizurin_affection 2   # Gain affection for honesty
 
-                echo "Great, so I wasn't just imagining it. Aoi told me about you. I hope we can be great friends this year!"
-
-                echo "1) Same here, I hope we can be great friends."
-                echo "2) I hope I can get some quiet this year!"
-                echo "3) No, you were imagining it, you're still in my genjutsu."
-
                 while true; do 
+                    echo "Great, so I wasn't just imagining it. Aoi told me about you. I hope we can be great friends this year!"
 
+                    echo "1) Same here, I hope we can be great friends."
+                    echo "2) I hope I can get some quiet this year!"
+                    echo "3) No, you were imagining it, you're still in my genjutsu."
                     read -p "(Choose 1, 2, or 3): " choice
 
                     case $choice in
                     1)
                         echo "Yay! I'm looking forward to it!"
+                        pause
                         break 3
                          ;;
                     2)
                         echo "Ehh?? That's kinda mean!"
+                        pause
                         break 3
                         ;;
                     3)
                         echo "Whaaat?? That's scary..."
+                        pause
                         break 3
                         ;;
                     *)
@@ -324,29 +375,32 @@ while true; do
 
                 change_mizurin_lie_meter 1   # Lie detected
 
-                echo "Whattttttt? I could swear it was you."
-                echo "Just kidding, I know you're lying hehe."
-                echo "What's your name? Aoi didn't really tell me that."
-
-                echo "1) Oh, I'm $name. Thought I might've been able to fool you but I guess not..."
-                echo "2) I'm $name, didn't know Aoi's friends were so extroverted. Sigh."
-                echo "3) I'm Batman."
-
                 while true; do
+                    echo "Whattttttt? I could swear it was you."
+                    pause
+                    echo "Just kidding, I know you're lying hehe."
+                    pause
+                    echo "Anyways what's your name? Aoi didn't really tell me that."
 
+                    echo "1) Oh, I'm $name. Thought I might've been able to fool you but I guess not..."
+                    echo "2) I'm $name, didn't know Aoi's friends were so extroverted. Sigh."
+                    echo "3) I'm Batman."
                     read -p "(Choose 1, 2, or 3): " choice
 
                     case $choice in 
                     1) 
                         echo "Don't underestimate my memory, $name!"
+                        pause
                         break 3
                         ;;
                     2) 
                         echo "Oh you bet we are!... or at least I am, and I won't let you escape hehe."
+                        pause
                         break 3
                         ;;
                     3)  
                         echo "...... uhhh she said you were weird but I sure wasn't expecting that lol. Well nice to meet you... Batman?"
+                        pause
                         break 3
                         ;;
                     *)
