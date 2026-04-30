@@ -7,7 +7,8 @@ arima_affection=0
 arima_lie_meter=0
 mizurin_affection=0
 mizurin_lie_meter=0
-
+umiko_affection=0
+umiko_lie_meter=0
 # --- UI HELPERS ---
 clear_screen() {
     clear
@@ -24,6 +25,8 @@ change_arima_affection() { arima_affection=$((arima_affection + $1)); }
 change_arima_lie_meter() { arima_lie_meter=$((arima_lie_meter + $1)); }
 change_mizurin_affection() { mizurin_affection=$((mizurin_affection + $1)); }
 change_mizurin_lie_meter() { mizurin_lie_meter=$((mizurin_lie_meter + $1)); }
+change_umiko_affection() { umiko_affection=$((umiko_affection + $1)); }
+change_umiko_lie_meter() { umiko_lie_meter=$((umiko_lie_meter +$1)); }
 
 pause() {
     echo ""
@@ -396,6 +399,125 @@ while true; do
                 echo "Please choose y or n."
             fi
         done
+        ;;
+    3)
+        while true;do
+            divider
+            echo "You walk to the front row near the window, the sun shines through nicely"
+            read -p "Gaze out the window (y/n)" answer
+            if [ "$answer" = "y" ]; then 
+                echo "Who are you? Your looking all mysterious."
+                pause
+                    while true;do
+                        divider
+                        echo "You turn around quickly looking for the source of the sound, a girl is looking at you."
+                        pause
+                        echo "She puts her eyes on you patiently waiting for your response"
+                        echo "1) I'm always mysterious, because I'm the boss around here."
+                        echo "2) Oh really, I just thought it looked pretty nice out today so I was looking at the sky."
+                        echo "3) uhhhhhh yea..."
+                        echo "4)....."
+                        read -p "(Choose 1, 2, 3, or 4)" choice 
+                            case $choice in
+                            1)  divider
+                                change_umiko_affection -1
+                                change_umiko_lie_meter 1
+                                read -p "ehhhh was that supposed to be a joke? (y/n)" answer
+                                while true;do
+                                    if [ "$answer" = "y" ]; then
+                                        change_umiko_affection 2
+                                        divider
+                                        echo "You sure are a jokester huh"
+                                        pause
+                                        echo "Well anyways I'm Yumehara Umiko I'll be sitting right behind you for the rest of this semster I look forward to working with you"
+                                        echo "Oh here comes the teacher I'll talk to ya later!"
+                                        break 3
+                                    elif  [ "$answer" = "n" ]; then
+                                        change_umiko_affection 1
+                                        echo "....."
+                                        echo "She turns her head and mumbles something quietly"
+                                        pause
+                                        echo "oh.. thats interesting.."
+                                        pause
+                                        echo "oh would you look at that our teacher is finaly here he.. he.."
+                                        pause
+                                        break 3
+                                    else 
+                                        echo "Please answer with either y or n"
+                                    fi
+                                done
+                                ;;
+                            2) 
+                                umiko_affection 1
+                                divider
+                                echo "It does look nice out now that I think about it"
+                                pause
+                                echo "She turns her head and looks out the window as well"
+                                pause
+                                echo "You sure are interesting"
+                                pause
+                                while true; do
+                                    echo "I'm Yumehara Umiko by the way"
+                                    echo "I look foward to working with you!"
+                                    echo "1) me too! I'm $name, lets have a great year"
+                                    echo "2) Well I think your weird"
+                                    read -p "(choose 1 or 2)" choice
+                                    case $choice in
+                                    1) 
+                                        divider
+                                        umiko_affection 1
+                                        echo "A big smile flashes accross her face"
+                                        pause
+                                        echo "Look its the teacher! I'll talk to ya later!"
+                                        break 3
+                                        ;;
+                                    2)
+                                        divider
+                                        umiko_affection -1
+                                        echo "Your one to talk."
+                                        pause                                       
+                                        echo "Look here comes the teacher, I'll catch your name during intros I guess."
+                                        break 3
+                                        ;;
+                                    *) echo "Please choose 1 or 2."
+                                        ;;
+                                    esac
+                                done
+                                ;;
+                            3)
+                                divider
+                                umiko_affection -2
+                                echo "okkkk"
+                                pause
+                                echo "ummm well the teacher just got here so I'll talk to you another time."
+                                break 2
+                                ;;
+                            4)
+                                divider
+                                umiko_affection -1
+                                while true; do
+                                    divider    
+                                    echo "hello?"
+                                    echo "1) Oh sorry I didn't hear you."
+                                    echo "2) ......"
+                                    echo "3) I heard you the first time."
+                                    read -p "(Choose 1, 2, or 3)" choice
+                                    case $choice in
+                                    1) echo "Oh no problem you must have been reallu absorbed in the view."
+                                       pause
+                                       echo "I'm Yumehara Umiko by the way I look forward to working with you!"
+                                                
+
+
+
+
+
+
+
+
+
+
+
         ;;
     *)
         echo "Please choose 1, 2, 3, or 4."
