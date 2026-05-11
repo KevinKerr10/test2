@@ -448,7 +448,7 @@ while true; do
                         done
                         ;;
                     2) 
-                        umiko_affection 1
+                        change_umiko_affection 1
                         divider
                         echo "It does look nice out now that I think about it"
                         pause
@@ -465,7 +465,7 @@ while true; do
                             case $choice in
                             1) 
                                 divider
-                                umiko_affection 1
+                                change_umiko_affection 1
                                 echo "A big smile flashes accross her face"
                                 pause
                                 echo "Look its the teacher! I'll talk to ya later!"
@@ -473,7 +473,7 @@ while true; do
                                 ;;
                             2)
                                 divider
-                                umiko_affection -1
+                                change_umiko_affection -1
                                 echo "Your one to talk."
                                 pause                                       
                                 echo "Look here comes the teacher, I'll catch your name during intros I guess."
@@ -486,7 +486,7 @@ while true; do
                         ;;
                     3)
                         divider
-                        umiko_affection -2
+                        change_umiko_affection -2
                         echo "okkkk"
                         pause
                         echo "ummm well the teacher just got here so I'll talk to you another time."
@@ -494,7 +494,7 @@ while true; do
                         ;;
                     4)
                         divider
-                        umiko_affection -1
+                        change_umiko_affection -1
                         while true; do
                             divider    
                             echo "hello?"
@@ -513,14 +513,14 @@ while true; do
                                ;;
                             2)  divider
                                 ignored_umiko=true
-                                umiko_affection -2
+                                change_umiko_affection -2
                                 echo "Oh so your just going to ignore me"
                                 pause
                                 echo "I'll remember this.."
                                 break 4
                                 ;;
                             3) divider
-                               umiko_affection -3
+                               change_umiko_affection -3
                                echo "Wow sure wasn't expecting that, I guess my other seat mates will have to do."
                                break 4
                                ;;
@@ -554,7 +554,7 @@ while true; do
                     case $choice in
                     1)
                         divider
-                        umiko_affection 1
+                        change_umiko_affection 1
                         echo "Well you know me atleast!"
                         pause
                         echo "Well maybe not alot but you will know me soon!"
@@ -575,7 +575,7 @@ while true; do
                                 break
                                 ;;
                             3)
-                                umiko_affection 1
+                                change_umiko_affection 1
                                 echo "You sure your not just hoping they'll be hot, your an interesting guy huh!"
                                 break
                                 ;;
@@ -589,7 +589,7 @@ while true; do
                         ;;
                     2)
                         divider
-                        umiko_lie_meter 1
+                        change_umiko_lie_meter 1
                         echo "really?"
                         pause
                         echo "Wow? I thought I would have seen you around by now, sorry for not noticing you all his time."
@@ -617,15 +617,15 @@ while true; do
                                 ;;
                             2)
                                 divider
-                                umiko_lie_meter 1
-                                umiko_affection 1
+                                change_umiko_lie_meter 1
+                                change_umiko_affection 1
                                 echo "What I'm Yumehara Umiko."
                                 echo "mmm whatever I'll catch your name later here comes the teacher."
                                 break 4
                                 ;;
                             3) 
                                 divider
-                                umiko_affection -1
+                                change_umiko_affection -1
                                 echo "mmm alright.."
                                 echo "Well the teacher just got here so talk to ya another time"
                                 break 4
@@ -638,14 +638,14 @@ while true; do
                         ;;
                     3)
                         divider
-                        umiko_affection -3
+                        change_umiko_affection -3
                         echo "Wow, thought I might try and get to know you but I guess you don't feel the same."
                         echo "She turns around and starts talking to someone else"
                         break 3
                         ;;
                     4)
                         divider
-                        umiko_affection 2
+                        change_umiko_affection 2
                         echo "Haha your weird, I think we'll be great friends!"
                         pause
                         echo "Please don't hide in the shadows anymore though, it'd be kinda incovenient if I can't see you lol."
@@ -670,15 +670,15 @@ while true; do
                                 ;;
                             2)
                                 divider
-                                umiko_lie_meter 1
-                                umiko_affection 1
+                                change_umiko_lie_meter 1
+                                change_umiko_affection 1
                                 echo "What I'm Yumehara Umiko."
                                 echo "mmm whatever I'll catch your name later here comes the teacher."
                                 break 4
                                 ;;
                             3) 
                                 divider
-                                umiko_affection -1
+                                change_umiko_affection -1
                                 echo "mmm alright.."
                                 echo "Well the teacher just got here so talk to ya another time"
                                 break 4
