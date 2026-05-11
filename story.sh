@@ -431,7 +431,7 @@ while true; do
                                 pause
                                 echo "Well anyways I'm Yumehara Umiko I'll be sitting right behind you for the rest of this semster I look forward to working with you"
                                 echo "Oh here comes the teacher I'll talk to ya later!"
-                                break 3
+                                break 4
                             elif  [ "$answer" = "n" ]; then
                                 change_umiko_affection 1
                                 echo "....."
@@ -441,7 +441,7 @@ while true; do
                                 pause
                                 echo "oh would you look at that our teacher is finaly here he.. he.."
                                 pause
-                                break 3
+                                break 4
                             else 
                                 echo "Please answer with either y or n"
                             fi
@@ -469,7 +469,7 @@ while true; do
                                 echo "A big smile flashes accross her face"
                                 pause
                                 echo "Look its the teacher! I'll talk to ya later!"
-                                break 3
+                                break 4
                                 ;;
                             2)
                                 divider
@@ -477,7 +477,7 @@ while true; do
                                 echo "Your one to talk."
                                 pause                                       
                                 echo "Look here comes the teacher, I'll catch your name during intros I guess."
-                                break 3
+                                break 4
                                 ;;
                             *) echo "Please choose 1 or 2."
                                 ;;
@@ -490,7 +490,7 @@ while true; do
                         echo "okkkk"
                         pause
                         echo "ummm well the teacher just got here so I'll talk to you another time."
-                        break 2
+                        break 3
                         ;;
                     4)
                         divider
@@ -508,8 +508,8 @@ while true; do
                                pause
                                echo "I'm Yumehara Umiko by the way I look forward to working with you!"
                                pause
-                               echo "Look! the teahers coming I'll catch your name later!"
-                               break 3
+                               echo "Look! the teachers coming I'll catch your name later!"
+                               break 4
                                ;;
                             2)  divider
                                 ignored_umiko=true
@@ -517,12 +517,12 @@ while true; do
                                 echo "Oh so your just going to ignore me"
                                 pause
                                 echo "I'll remember this.."
-                                break 3
+                                break 4
                                 ;;
                             3) divider
                                umiko_affection -3
                                echo "Wow sure wasn't expecting that, I guess my other seat mates will have to do."
-                               break 3
+                               break 4
                                ;;
                             *)
                                 echo "Please choose 1, 2, or 3."
@@ -541,9 +541,163 @@ while true; do
                 pause
                 echo "You quickly turn around to the voice of a girl behind you"
                 pause
-                echo "Hey I'm Yumehara Umiko I've never seen you around before!"
-                pause
+                while true; do
 
+                    echo "Hey I'm Yumehara Umiko I've never seen you around before!"
+                    pause
+                    echo "She looks at you and waits."
+                    echo "1) Yea I don't really know anyone here."
+                    echo "2) What I've been here forever."
+                    echo "3) Thats because I've been avoiding you this whole time."
+                    echo "4) I hide in the shadows so no one ever sees me I merely allowed you to see my greatness as a matter of curtesy."
+                    read -p "(Choose 1,2,3, or 4)" choice
+                    case $choice in
+                    1)
+                        divider
+                        umiko_affection 1
+                        echo "Well you know me atleast!"
+                        pause
+                        echo "Well maybe not alot but you will know me soon!"
+                        while true; do
+
+                            echo "So, do you think are teacher will be strict or fun?"
+                            echo "1) I think they will be really fun"
+                            echo "2) hmm I feel like I'm not lucky enough to get a fun teacher"
+                            echo "3) I think they will be hella hot"
+                            read -p "(Choose 1, 2, or 3)" choice
+                            case $choice in
+                            1) 
+                                echo "Oh, I really hope your right!"
+                                break
+                                ;;
+                            2) 
+                                echo "Me neither, well hope our luck changes because I do not want to deal with yet another bad teacher."
+                                break
+                                ;;
+                            3)
+                                umiko_affection 1
+                                echo "You sure your not just hoping they'll be hot, your an interesting guy huh!"
+                                break
+                                ;;
+                            *) 
+                                echo "Please choose 1, 2, or 3"
+                                ;;
+                            esac  
+                        done
+                        echo "Oh here comes the grand reveal, talk to ya later!"
+                        break 3
+                        ;;
+                    2)
+                        divider
+                        umiko_lie_meter 1
+                        echo "really?"
+                        pause
+                        echo "Wow? I thought I would have seen you around by now, sorry for not noticing you all his time."
+                        pause
+                        echo "Well atleast I noticed you now! So lets have a great year moving forward"
+                        pause
+                        while true; do
+
+                            divider
+                            echo "Oh and I didn't quite catch your name."
+                            echo "she lays back in her chair and looks at you"
+                            echo "1) I'm $name nice to meet you!"
+                            echo "2) I'm Yumehara Umiko"
+                            echo "3) You'll figure out my name later"
+                            read -p "(Choose 1, 2, or 3)" choice
+                            case $choice in
+                            1)
+                                divider
+                                echo "Nice to meet you too!"
+                                pause
+                                echo "Oh look the teachers here, hope shes fun!"
+                                pause
+                                echo "Talk to ya later!"
+                                break 4
+                                ;;
+                            2)
+                                divider
+                                umiko_lie_meter 1
+                                umiko_affection 1
+                                echo "What I'm Yumehara Umiko."
+                                echo "mmm whatever I'll catch your name later here comes the teacher."
+                                break 4
+                                ;;
+                            3) 
+                                divider
+                                umiko_affection -1
+                                echo "mmm alright.."
+                                echo "Well the teacher just got here so talk to ya another time"
+                                break 4
+                                ;;
+                            *) 
+                                echo "Please choose 1, 2, or 3"
+                                ;;
+                            esac
+                        done
+                        ;;
+                    3)
+                        divider
+                        umiko_affection -3
+                        echo "Wow, thought I might try and get to know you but I guess you don't feel the same."
+                        echo "She turns around and starts talking to someone else"
+                        break 3
+                        ;;
+                    4)
+                        divider
+                        umiko_affection 2
+                        echo "Haha your weird, I think we'll be great friends!"
+                        pause
+                        echo "Please don't hide in the shadows anymore though, it'd be kinda incovenient if I can't see you lol."
+                        while true; do
+
+                            divider
+                            echo "Oh and I didn't quite catch your name."
+                            echo "she lays back in her chair and looks at you"
+                            echo "1) I'm $name nice to meet you!"
+                            echo "2) I'm Yumehara Umiko"
+                            echo "3) You'll figure out my name later"
+                            read -p "(Choose 1, 2, or 3)" choice
+                            case $choice in
+                            1)
+                                divider
+                                echo "Nice to meet you too!"
+                                pause
+                                echo "Oh look the teachers here, hope shes fun!"
+                                pause
+                                echo "Talk to ya later!"
+                                break 4
+                                ;;
+                            2)
+                                divider
+                                umiko_lie_meter 1
+                                umiko_affection 1
+                                echo "What I'm Yumehara Umiko."
+                                echo "mmm whatever I'll catch your name later here comes the teacher."
+                                break 4
+                                ;;
+                            3) 
+                                divider
+                                umiko_affection -1
+                                echo "mmm alright.."
+                                echo "Well the teacher just got here so talk to ya another time"
+                                break 4
+                                ;;
+                            *) 
+                                echo "Please choose 1, 2, or 3"
+                                ;;
+                            esac
+                        done
+                        ;;
+                    *)
+                        echo "Please choose 1, 2, 3, or 4"
+                        ;;
+                    esac
+                done
+            else
+                echo "Please choose y or n"
+            fi
+        done
 
 
 
