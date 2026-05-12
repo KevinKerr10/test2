@@ -116,7 +116,7 @@ while true; do
         break
         ;;
     2)  
-        echo "/"Aoi like Ah-oy, you seemed to know before.."/ She says squinting at you"
+        echo "\"Aoi like Ah-oy, you seemed to know before..\" She says squinting at you"
         pretended_to_know=false
         pause
         break
@@ -194,7 +194,7 @@ fi
 
 while true; do
     divider
-    read -p "Changing the subject here, but I barely managed to finish my homework. Did you finish your English homework? (y/n) " answer
+    read -p "She looks at her bag and than looks back at you. \"You finished your english homework right?\" she says (y/n) " answer
 
     if [ "$answer" = "y" ]; then
         while true; do
@@ -251,13 +251,11 @@ done
 divider
 echo "You guys continue walking down the street. You have no idea where you are going, but it looks like a lot of students in the same uniform as you are headed in the same direction."
 pause
-
+divider
+echo "After walking for a little bit more, a school comes into view."
+pause
 while true; do
-    divider
-    echo "After walking for a little bit more, a school comes into view."
-    pause
     echo "Hey $name, before I go, good luck with your first class. I hope you make some great friends!"
-
     echo "1) Don't worry, I'll have the whole school under my command."
     echo "2) Don't expect too much of me!"
     echo "3) You too!"
@@ -309,7 +307,7 @@ while true; do
             divider
             echo "You walk to the back corner, the MC seat."
             pause
-            echo "The kid in front of you turns around. Going for the MC seat, I see. I'm Arima Yamaguchi, by the way. I look forward to working with you."
+            echo "The kid in front of you turns around. \"Going for the MC seat, I see. I'm Arima Yamaguchi, by the way. I look forward to working with you\""
 
             echo "1) Screw you!"
             echo "2) Same here, I'm $name by the way."
@@ -459,6 +457,7 @@ while true; do
                         while true; do
                             echo "I'm Yumehara Umiko by the way"
                             echo "I look foward to working with you!"
+                            divider
                             echo "1) me too! I'm $name, lets have a great year"
                             echo "2) Well I think your weird"
                             read -p "(choose 1 or 2)" choice
@@ -584,7 +583,7 @@ while true; do
                                 ;;
                             esac  
                         done
-                        echo "Oh here comes the grand reveal, talk to ya later!"
+                        echo "Oh here comes the teacher time to know if our guesses were right or wrong, talk to ya later!"
                         break 3
                         ;;
                     2)
