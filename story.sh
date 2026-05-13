@@ -9,6 +9,8 @@ mizurin_affection=0
 mizurin_lie_meter=0
 umiko_affection=0
 umiko_lie_meter=0
+kirky_affection=-2
+kirky_lie_meter=0
 # --- UI HELPERS ---
 clear_screen() {
     clear
@@ -697,18 +699,46 @@ while true; do
                 echo "Please choose y or n"
             fi
         done
-
-
-
-
-
-
-
-
-
-
         ;;
-    *)
+    4)
+        divider
+        echo "You walk over to the seat near the door and look around."
+        pause
+        echo "there doesn't appear to be much talkative people there."
+        pause
+        echo "You sit down and turn to your seatmates, one of them, the one directly behind you has a stack of manga on his table and has his nose in his book"
+        pause
+        echo "The other one to your left is laying back in his chair, his eyes are closed and he lookes really relaxed"
+        pause
+        echo "You look around to see if there is anyone else but all you see is a baren empty desk located to your back left, hopefully someone interesting will choose to sit there."
+        while true; do
+            echo "1) Talk to the guy behind you with all the mangas."
+            echo "2) Wake up the guy next to you."
+            echo "3) Do nothing"
+            echo "4) Set up a prank for when the teacher walks in"
+            read -p "(Choose 1, 2, 3, or 4)" choice
+            case $choice in
+            1)
+                echo "You turn around \"What you reading?\" You say to the kid behind you."
+                echo "Uhh I'm reading manga. Why do you ask.. "
+                echo "1) Well I know your reading manga but which one, I'm a big fan too."
+                echo "2) You know what nvm."
+                echo "3) I was wondering if you had any doujinshi."
+
+
+
+
+
+
+
+
+
+         
+
+
+
+         ;;
+     *)
         echo "Please choose 1, 2, 3, or 4."
         ;;
     esac
