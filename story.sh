@@ -11,6 +11,8 @@ umiko_affection=0
 umiko_lie_meter=0
 kirky_affection=-2
 kirky_lie_meter=0
+kei_affection=0
+kei_lie_meter=0
 # --- UI HELPERS ---
 clear_screen() {
     clear
@@ -28,7 +30,11 @@ change_arima_lie_meter() { arima_lie_meter=$((arima_lie_meter + $1)); }
 change_mizurin_affection() { mizurin_affection=$((mizurin_affection + $1)); }
 change_mizurin_lie_meter() { mizurin_lie_meter=$((mizurin_lie_meter + $1)); }
 change_umiko_affection() { umiko_affection=$((umiko_affection + $1)); }
-change_umiko_lie_meter() { umiko_lie_meter=$((umiko_lie_meter +$1)); }
+change_umiko_lie_meter() { umiko_lie_meter=$((umiko_lie_meter + $1)); }
+change_kirky_affection() { kirky_affection=$((kirky_affection + $1)); }
+change_kirky_lie_meter() { kirky_lie_meter=$((kirky_lie_meter + $1)); }
+change_kei_affection() { kei_affection=$((kei_affection + $1)); }
+change_kei_lie_meter() { kei_lie_meter=$((kei_lie_meter + $1)); }
 
 pause() {
     echo ""
@@ -708,22 +714,118 @@ while true; do
         pause
         echo "You sit down and turn to your seatmates, one of them, the one directly behind you has a stack of manga on his table and has his nose in his book"
         pause
-        echo "The other one to your left is laying back in his chair, his eyes are closed and he lookes really relaxed"
+        echo "The other one to your left is laying back in her chair, her eyes are closed and she lookes really relaxed"
         pause
-        echo "You look around to see if there is anyone else but all you see is a baren empty desk located to your back left, hopefully someone interesting will choose to sit there."
         while true; do
+            divider
+            echo "You look around to see if there is anyone else but all you see is a baren empty desk located to your back left, hopefully someone interesting will choose to sit there."
+            pause
+            if [ "$talked_to_kirky" = true ]; then
+                echo "You've already talked to the kid with the manga, but the teacher isn't here yet so you wonder what you'll do all over again."           
+                pause
+            fi
             echo "1) Talk to the guy behind you with all the mangas."
-            echo "2) Wake up the guy next to you."
-            echo "3) Do nothing"
-            echo "4) Set up a prank for when the teacher walks in"
+            echo "2) Wake up the girl next to you."
+            echo "3) Wait for teacher."
+            echo "4) Set up a prank for when the teacher walks in."
             read -p "(Choose 1, 2, 3, or 4)" choice
             case $choice in
             1)
+                divider
                 echo "You turn around \"What you reading?\" You say to the kid behind you."
-                echo "Uhh I'm reading manga. Why do you ask.. "
-                echo "1) Well I know your reading manga but which one, I'm a big fan too."
-                echo "2) You know what nvm."
-                echo "3) I was wondering if you had any doujinshi."
+                while true; do
+                    divider
+                    echo "Uhh I'm reading manga. Why do you ask.. "
+                    echo "1) Well I know your reading manga but which one, I'm a big fan too."
+                    echo "2) You know what nvm."
+                    echo "3) I was wondering if you had any doujinshi."
+                    read -p "(Choose 1, 2, or 3)" choice
+                    case $choice in 
+                        1) 
+                           divider
+                           echo "Oh you don't look like a fan of manga."
+                           pause
+                           echo "Well I'm reading Anya sometimes hides her feelings in english"
+                           pause
+                           echo "And its pretty interesting so I'm going to keep reading..."
+                           break
+                           talked_to_kirky=true
+                           ;;
+                        2)
+                            change_kirky_affection -1
+                            divider
+                            echo "Ok I'm going to keep reading than"
+                            break
+                            talked_to_kirky=true
+                            ;;
+                        3)
+                            change_kirky_affection 5
+                            divider
+                            echo "His eyes perk up"
+                            pause
+                            echo "\"It seems I may have found myself a comrade.\""
+                            pause
+                            echo "\"My name is Kirky Chudstein I think we'll be great friends.\""
+                            pause
+                            echo "\"Oh here comes the teacher, I'll show you the goods later.\""
+                            break 3
+                            ;;
+                        *)
+                            divider
+                            echo "Please choose 1, 2, or 3"
+                            ;;
+                        esac
+                        ;;
+            2)        
+                divider
+                echo "You turn to the girl next to you, she looks pretty cozy but you decide to wake her up anyways.."
+                pause
+                echo "\"mmm did someone tap my shoudler.\" she says while yawning."
+                pause
+                echo "\"Yeah I tapped your shoulder.\" you say."
+                pause
+                echo "\"I was having a good sleep you know.\" She mentions while slowly getting up and stretching."
+                pause 
+                while true; do
+                    divider
+                    echo "\"So why'd you wake me up?\" she looks in your direction and lays her head on her desk while waiting."
+                    echo "1) The teacher will come any minute now so I wanted to save you before they call you out infront of everyone."
+                    echo "2) You just looked so comfortable I felt like disturbing the peace."
+                    echo "3) I'm pretty bored so I wanted to see if I could get to know my seatmates better."
+                    read -p "(Choose 1, 2, or 3)" choice 
+                    case $choice in 
+                    1) 
+                        divider
+                        change_kei_affection 3
+                        echo "\"Oh yea I'm at school thanks for reminding me, that would have been embarrassing.\""
+                        pause 
+                        echo "\"I'm Kanashiro Kei by the way, please help me in the future as well I tend to be treally tired at school.\" she says while yawning again."
+                        pause
+                        echo "\"Oh here comes the teacher, I guess she really was coming soon.\" She observes."
+                        break 3
+                        ;;
+                    2)
+                        divider
+                        change_kei_affection -2
+                        echo "\" ehhhhh that was a really nice dream I was in.\" She says while the light slowly dies out from here eyes."
+                        pause
+                        echo "\" well don't do it again then or umm... I.. I'll hate you.\" She stutters."
+
+
+
+
+                
+                ;;
+            3)
+                            divider
+                            echo "After a bit you see the teacher and stop what your doing."
+                            break 2
+                            ;;            
+                
+
+
+
+
 
 
 
@@ -737,8 +839,8 @@ while true; do
 
 
 
-         ;;
-     *)
+         
+        *)
         echo "Please choose 1, 2, 3, or 4."
         ;;
     esac
