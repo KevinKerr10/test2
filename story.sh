@@ -311,6 +311,7 @@ while true; do
 
     case $choice in
     1)
+        chose_seat1=true
         while true; do
             divider
             echo "You walk to the back corner, the MC seat."
@@ -350,6 +351,7 @@ while true; do
         done
         ;;
     2)
+        chose_seat2=true
         divider
         echo "You walk to the back corner near the wall, now this is a nice seat."
         echo "Once you finally settle down into your new seat, the girl next to you turns in your direction."
@@ -407,6 +409,7 @@ while true; do
         done
         ;;
     3)
+        chose_seat3=true
         while true;do
             divider
             echo "You walk to the front row near the window, the sun shines through nicely"
@@ -707,6 +710,7 @@ while true; do
         done
         ;;
     4)
+        chose_seat4=true       
         divider
         echo "You walk over to the seat near the door and look around."
         pause
@@ -810,38 +814,102 @@ while true; do
                         echo "\" ehhhhh that was a really nice dream I was in.\" She says while the light slowly dies out from here eyes."
                         pause
                         echo "\" well don't do it again then or umm... I.. I'll hate you.\" She stutters."
-
-
-
-
-                
+                        pause
+                        echo "\" Ok well then ima go back to sleep than.\" She yawns."
+                        break 
+                        ;;
+                    3)
+                        divider
+                        change_kei_affection 1
+                        echo "\" Oh thats nice I guess I could get to know you before the teacher gets here.\" She say clearly tired."
+                        pause
+                        echo "\" I'm Kanashiro Kei I guess, uh.. My hobbies are napping, dreaming, mmm.. and I guess reading books in the library.\" She says, with her voice cleaerer than last time."
+                        pause 
+                        echo "\" And you are?\" She asks you, while calmly laying back."
+                        while true; do
+                            divider
+                            read -p "Tell her your name? (y/n)" answer
+                            if [ "$answer" = "y" ]; then
+                                divider
+                                change_kei_affection 1                           
+                                echo "\"I'm $name, nice to meet you Kanashiro.\" You respond."
+                                pause
+                                echo "\"Oh yea nice to meet you.\" She mumurs."
+                                break
+                            elif [ "$answer" = "n" ]; then
+                                divider
+                                echo "\"I want to keep it a surprise for introductions\" You answer."
+                                pause
+                                echo "\" Mmmm alright, hope I'm not asleep during intros.\"She says lightly."
+                                break
+                            else 
+                                divider
+                                echo "Please choose y or n."
+                            fi
+                        done
+                        echo "\"Oh look I managed to stay awake unitl the teacher got here, talk to you another time!\" She says smiling."
+                        break 3
+                        ;;
+                    *)
+                        divider
+                        echo "Please choose 1, 2, or 3."
+                        ;;
+                    esac
+                done       
                 ;;
             3)
-                            divider
-                            echo "After a bit you see the teacher and stop what your doing."
-                            break 2
-                            ;;            
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-         
-
-
-
-         
-        *)
+                divider
+                echo "After a bit you see the teacher and stop what your doing."
+                break 2
+                ;;    
+            4)
+                divider
+                echo "You look around, you know what must be done you see the door, you see what you've got its all set."
+                pause
+                echo "You get up and set up the prank at the door everyone is looking at you."
+                pause
+                echo "You quickly finish and rush back to your seat and wait for the teacher to arrive."    
+                break 2
+                set_prank=true
+                ;;
+            *)    
+                echo "Please choose 1, 2, 3, or 4."
+                ;;
+            esac
+        done
+        ;;
+    *)
         echo "Please choose 1, 2, 3, or 4."
         ;;
     esac
 done
+echo "Everyone turns there heads the sound of the door opening rings through the classroom and everyone goes quiet"
+if [ "$set_prank" = true ]; then
+    echo "Looks of all kinds flash accross everyones faces as they realize whats about to unfold."
+    pause
+    echo "The teacher slides the door open and takes the first step in the class."
+    pause
+    echo "As if in slow motion exactly the way you pictured it the bucket full of pencil shavings above the door falls down."
+    pause
+    echo "Everyone watches each instant slowly, until finally.."
+    pause
+    echo "The bucket fell straight on the teachers head, and a loud clank sound reverberates throguh the classroom"
+    pause
+    echo "But for some reason diverging from everyones expecations, the teacher doesn't look surprised, she looks in your diretion."
+    pause
+    divider
+    echo "Everyone looks at you."
+    pause
+    echo "The teacher sighs."
+    pause
+    echo "\"Cant say I didn't expect this, I'll let you get off this time but next time you won't be so lucky.\" She says to you with a small smile on her face."
+    pause
+    echo "While all the chaos unfolded all you could think to yourself was, how the hell did she know it was me."
+    pause
+    echo "The teacher brushes off the penicl shavings and gets back to business."
+    pause
+    echo "\" Now that thats dealth with, lets get class started.\" she calmly anounces with not a hint of anger on her face."
+    divider
+fi
+
+
