@@ -870,8 +870,8 @@ while true; do
                 echo "You get up and set up the prank at the door everyone is looking at you."
                 pause
                 echo "You quickly finish and rush back to your seat and wait for the teacher to arrive."    
-                break 2
                 set_prank=true
+                break 2
                 ;;
             *)    
                 echo "Please choose 1, 2, 3, or 4."
