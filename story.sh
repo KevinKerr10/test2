@@ -745,41 +745,42 @@ while true; do
                     echo "3) I was wondering if you had any doujinshi."
                     read -p "(Choose 1, 2, or 3)" choice
                     case $choice in 
-                        1) 
-                           divider
-                           echo "Oh you don't look like a fan of manga."
-                           pause
-                           echo "Well I'm reading Anya sometimes hides her feelings in english"
-                           pause
-                           echo "And its pretty interesting so I'm going to keep reading..."
-                           break
-                           talked_to_kirky=true
-                           ;;
-                        2)
-                            change_kirky_affection -1
-                            divider
-                            echo "Ok I'm going to keep reading than"
-                            break
-                            talked_to_kirky=true
-                            ;;
-                        3)
-                            change_kirky_affection 5
-                            divider
-                            echo "His eyes perk up"
-                            pause
-                            echo "\"It seems I may have found myself a comrade.\""
-                            pause
-                            echo "\"My name is Kirky Chudstein I think we'll be great friends.\""
-                            pause
-                            echo "\"Oh here comes the teacher, I'll show you the goods later.\""
-                            break 3
-                            ;;
-                        *)
-                            divider
-                            echo "Please choose 1, 2, or 3"
-                            ;;
-                        esac
+                    1) 
+                       divider
+                       echo "Oh you don't look like a fan of manga."
+                       pause
+                       echo "Well I'm reading Anya sometimes hides her feelings in english"
+                       pause
+                       echo "And its pretty interesting so I'm going to keep reading..."
+                       break
+                       talked_to_kirky=true
+                       ;;
+                    2)
+                        change_kirky_affection -1
+                        divider
+                        echo "Ok I'm going to keep reading than"
+                        break
+                        talked_to_kirky=true
                         ;;
+                     3)
+                        change_kirky_affection 5
+                        divider
+                        echo "His eyes perk up"
+                        pause
+                        echo "\"It seems I may have found myself a comrade.\""
+                        pause
+                        echo "\"My name is Kirky Chudstein I think we'll be great friends.\""
+                        pause
+                        echo "\"Oh here comes the teacher, I'll show you the goods later.\""
+                        break 3
+                        ;;
+                    *)
+                        divider
+                        echo "Please choose 1, 2, or 3"
+                        ;;
+                    esac
+                done
+                ;;
             2)        
                 divider
                 echo "You turn to the girl next to you, she looks pretty cozy but you decide to wake her up anyways.."
