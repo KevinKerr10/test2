@@ -13,6 +13,7 @@ kirky_affection=-2
 kirky_lie_meter=0
 kei_affection=0
 kei_lie_meter=0
+reputation=0
 # --- UI HELPERS ---
 clear_screen() {
     clear
@@ -35,7 +36,7 @@ change_kirky_affection() { kirky_affection=$((kirky_affection + $1)); }
 change_kirky_lie_meter() { kirky_lie_meter=$((kirky_lie_meter + $1)); }
 change_kei_affection() { kei_affection=$((kei_affection + $1)); }
 change_kei_lie_meter() { kei_lie_meter=$((kei_lie_meter + $1)); }
-
+change_reputation() { reputation=$((reputation + $1)); }
 pause() {
     echo ""
     read -r -p "Press Enter to continue"
@@ -912,5 +913,16 @@ if [ "$set_prank" = true ]; then
     echo "\" Now that thats dealth with, lets get class started.\" she calmly anounces with not a hint of anger on her face."
     divider
 fi
+echo "The teacher walks to the front of the classroom and begins to speak."
+echo "\"Hello everyone I'm Ms. Kobayashi and I'll be your homeroom teacher for the rest of year, I look forward to wroking with you all!\""
+echo "\"Enough of my introductions though I believe its time you all introduce your selves to everyone, lets begin with the back corner near the window.\""
+if [ "$chose_seat1" = true ]; then
+    echo "Wait a minute thats you, introduce yourself everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
+    echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
+    echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
+    echo "3) ...... I'm $name"
+    echo "4) As you may already know I'm batman, I lurk in the shadows, and protect the light."
+    read -p "(Choose 1, 2, 3, or 4)" choice 
+
 
 
