@@ -977,6 +977,8 @@ if [ "$chose_seat1" = true ]; then
             break
             ;;
         *) echo "Please choose 1, 2, 3, or 4."
+           ;;
+        esac
     done
 else
 
