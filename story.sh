@@ -917,12 +917,74 @@ echo "The teacher walks to the front of the classroom and begins to speak."
 echo "\"Hello everyone I'm Ms. Kobayashi and I'll be your homeroom teacher for the rest of year, I look forward to wroking with you all!\""
 echo "\"Enough of my introductions though I believe its time you all introduce your selves to everyone, lets begin with the back corner near the window.\""
 if [ "$chose_seat1" = true ]; then
-    echo "Wait a minute thats you, introduce yourself everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
-    echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
-    echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
-    echo "3) ...... I'm $name"
-    echo "4) As you may already know I'm batman, I lurk in the shadows, and protect the light."
-    read -p "(Choose 1, 2, 3, or 4)" choice 
+    while true; do
+        intro_done=true
+        divider
+        echo "Wait a minute thats you, introduce yourself everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
+        echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
+        echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
+        echo "3) ...... I'm $name"
+        echo "4) As you may already know I'm batman, I lurk in the shadows, and protect the light."
+        read -p "(Choose 1, 2, 3, or 4)" choice 
+        case $choice in
+        1)
+            change_reputation 3
+            divider
+            echo "Everyone turns to you and responds\"Nice to meet you too! Many students all over the class reply\""
+            if [ "$arima_affection" > 0 ]; then
+                echo "Your new friend Arima turns to you as well and smiles,\"Hey that was a pretty strong intro\" He comments while smiling at you."
+            else 
+                change_arima_affection -2
+                echo "Your seamate Arima turns to you,\"Wow what'd I do to harbor such a negative response from you when your like you gave me.\" He murmurs."
+            fi
+            break
+            ;;
+        2) 
+            change_reputation -4
+            echo "Everyone instantly turns there heads and a couple of them even give you looks of disgust. For some reason one guy near the front corner starts smirking, but everyone else didn't seem to find what you said very funny."
+            pause
+            echo "\"uhh what a weirdo.\"You hear some girls whisper."
+            pause           
+            echo "It would seem that this isn't going to be easy to recover from."
+            if [ "$arima_affection" > 0 ];then 
+                echo "Even Arima your new friend looks at you with surprise on his face."
+            fi
+            break
+            ;;
+        3)
+            change_reputation -1
+            divider
+            echo "The class goes silent, and you sit back down quickly"
+            if [ "$arima_affection" > 0 ];then
+                echo "Arima turns to you right after you sit down and begins to speak"
+                pause
+                echo "\"Not the way you wanted that to turn out huh!\"He says chuckling softly"
+            fi
+            break
+            ;;
+        4)
+            change_reputation 2
+            divider
+            echo "An awkward silence blankets the room."
+            pause
+            echo "3 seconds go by."
+            pause
+            echo "Half the people are trying there hardest not to laugh, the other half is already laughing."
+            if [ "$arima_affection" > 0 ];then
+                echo "Your funnier than I though huh!"
+            fi
+            echo "\"Alright class settle down\"The teacher interjects."
+            break
+            ;;
+        *) echo "Please choose 1, 2, 3, or 4."
+    done
+else
+
+
+
+
+
+
 
 
 
