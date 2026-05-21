@@ -920,7 +920,10 @@ if [ "$chose_seat1" = true ]; then
     while true; do
         intro_done=true
         divider
-        echo "Wait a minute thats you, introduce yourself everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
+        pause
+        echo "Wait a minute thats you, introduce yourself."
+        pause
+        echo "Everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
         echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
         echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
         echo "3) ...... I'm $name"
@@ -976,11 +979,12 @@ if [ "$chose_seat1" = true ]; then
             echo "\"Alright class settle down\"The teacher interjects."
             break
             ;;
-        *) echo "Please choose 1, 2, 3, or 4."
-           ;;
+        *) 
+            echo "Please choose 1, 2, 3, or 4."
+            ;;
         esac
     done
-else
+fi
 
 
 
