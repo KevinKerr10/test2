@@ -308,9 +308,9 @@ while true; do
     echo "2) Back corner near the wall"
     echo "3) Front row near the window"
     echo "4) Front row near the door"
-    read -p "(Choose 1, 2, 3, or 4): " choice
+    read -p "(Choose 1, 2, 3, or 4): " seat
 
-    case $choice in
+    case $seat in
     1)
         chose_seat1=true
         while true; do
@@ -374,13 +374,19 @@ while true; do
                     read -p "(Choose 1, 2, or 3): " choice
 
                     case $choice in
-                    1) echo "Yay! I'm looking forward to it!"; pause; break 3 ;;
-                    2) echo "Ehh?? That's kinda mean!"; pause; break 3 ;;
-                    3) echo "Whaaat?? That's scary..."; pause; break 3 ;;
-                    *) echo "Please choose 1, 2, or 3." ;;
+                    1)  
+                        change_mizurin_affection 3
+                        echo "Yay! I'm looking forward to it!"; pause; break 3 ;;
+                    2) 
+                        change_mizurin_affection -1
+                        echo "Ehh?? That's kinda mean!"; pause; break 3 ;;
+                    3) 
+                        change_mizurin_affection 1
+                        echo "Whaaat?? That's scary..."; pause; break 3 ;;
+                    *)  
+                        echo "Please choose 1, 2, or 3." ;;
                     esac
                 done
-
             elif [ "$answer" = "n" ]; then
                 change_mizurin_lie_meter 1
 
@@ -398,15 +404,23 @@ while true; do
                     read -p "(Choose 1, 2, or 3): " choice
 
                     case $choice in
-                    1) echo "Don't underestimate my memory, $name!"; pause; break 3 ;;
-                    2) echo "Oh you bet we are!... or at least I am, and I won't let you escape hehe."; pause; break 3 ;;
-                    3) echo "...... uhhh she said you were weird but I sure wasn't expecting that lol. Well nice to meet you... Batman?"; pause; break 3 ;;
-                    *) echo "Please choose 1, 2, or 3." ;;
+                    1) 
+                        change_mizurin_affection 1
+                        echo "Don't underestimate my memory, $name!"; pause; break 3 ;;
+                    2) 
+                        change_mizurin_affection 1
+                        echo "Oh you bet we are!... or at least I am, and I won't let you escape hehe."; pause; break 3 ;;
+                    3) 
+                        change_mizurin_affection 2
+                        echo "...... uhhh she said you were weird but I sure wasn't expecting that lol. Well nice to meet you... Batman?"; pause; break 3 ;;
+                    *) 
+                        echo "Please choose 1, 2, or 3." ;;
                     esac
                 done
             else
                 echo "Please choose y or n."
             fi
+            echo "\"Oh $name, look! the teachers coming, I'll talk to you later!\"She declares with a big smile on her face."
         done
         ;;
     3)
@@ -933,7 +947,7 @@ if [ "$chose_seat1" = true ]; then
         1)
             change_reputation 3
             divider
-            echo "Everyone turns to you and responds\"Nice to meet you too! Many students all over the class reply\""
+            echo "Everyone turns to you and responds\"Nice to meet you too!\" Many students all over the class reply happily."
             if [ "$arima_affection" > 0 ]; then
                 echo "Your new friend Arima turns to you as well and smiles,\"Hey that was a pretty strong intro\" He comments while smiling at you."
             else 
@@ -984,6 +998,150 @@ if [ "$chose_seat1" = true ]; then
             ;;
         esac
     done
+else
+divider
+echo "The girl in the corner stands up."
+pause
+echo "Her legs are trembling ever so slightly"
+pause
+echo "All eyes are on her"
+pause
+echo "the sun is shining onto her through the window"
+pause
+echo "She begins to speak"
+pause
+echo "\"Uh hello I'm Yui Nakamura, N-N-Nice to meet you all\""
+pause
+echo "Everyone in the class responded with a simple\"Nice to meet you too\"And then we moved on to the next intro."
+pause
+echo "The teacher began announcing something again"
+pause
+echo "\"Alright next up the seat infront of that one, we will go forward through each lane and then once we reach the end we will go to the right and then backwards, please be ready to introduce yourself once your turn is apporaching.\""
+pause
+echo "The kid infront of Yui Nakamura stood up"
+pause
+echo "\" I'm Arima Yamaguchi, Nice to meet you all! I play soccer and hope I can get to know all of you better\" He says with a clear voice while smiling."
+pause
+echo " And so the intros continued just as so, every once in a while you'd get the awkward kid or the exciting kid but it was overall the same, most importantly your turn had finaly appeared"
+divider
+case $seat in 
+2)
+    echo "All eyes are on you"
+    pause
+    echo "You stand up and get ready to say what you must"
+    pause
+    echo "But what do you say?"
+    while true; do
+        intro_done=true
+        divider
+        pause
+        echo "Wait a minute thats you, introduce yourself."
+        pause
+        echo "Everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
+        echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
+        echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
+        echo "3) ...... I'm $name"
+        echo "4) As you may already know I'm batman, I lurk in the shadows, and protect the light."
+        read -p "(Choose 1, 2, 3, or 4)" choice 
+        case $choice in
+        1)   
+            change_reputation 3
+            divider
+            echo "Everyone turns to you and responds\"Nice to meet you too!\" Many students all over the class reply happily." 
+            if [ "$mizurin_affection" < 0 ]; then
+                echo "\"hmmm, quiet you said...\"Mizurin says darting her eyes between you and everyone else."
+                pause
+            else
+                echo "Mizurin turns in your direction"
+                pause
+                echo "\"Your more interesting than I thought!\"She voices to you."
+                change_mizurin_affection 2
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+           
+
+            ;;
+        2)
+            change_reputation -4
+            echo "Everyone instantly turns there heads and a couple of them even give you looks of disgust. For some reason one guy near the front corner starts smirking, but everyone else didn't seem to find what you said very funny."
+            pause
+            echo "\"uhh what a weirdo.\"You hear some girls whisper."
+            pause           
+            echo "It would seem that this isn't going to be easy to recover from."
+            if [ "$mizurin_affection" < 0 ]; then
+                change_mizurin_affection -2
+                echo "Mizurin looks at you and than looks away"
+                pause
+                echo "\"I think I know why he said he wants quiet now...\"She whispers to herself quietly."
+            else
+                echo "Mizurin side eyes you and then turns to your direction."
+                pause
+                echo "\"Were you TRYing to make the worst impression you could..\" She sighs"
+                pause
+                echo "\"Your lucky I'm here, or this would be a pretty friendless year for you.\"She says with a disapointed smile."
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            ;;     
+        3)
+            change_reputation -1
+            divider
+            echo "The class goes silent, and you sit back down quickly"
+            if [ "$mizurin_affection" < 0 ]; then
+                echo "Mizurin looks in your direction."
+                pause
+                echo "\"I guess your just shy.\" she observes"
+                pause 
+                echo "\"Well I'll always be here if you ever decide you need a friend.\" She suggests."
+                change_mizurin_affection 1
+            else
+                echo "Mizurin looks in your direction."
+                pause
+                echo "\"Ummm that was a good attempt.\" She says biting her lip with a very force smile."
+                change_mizurin_affection 2
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            ;;
+        4)
+            change_reputation 2
+            divider
+            echo "An awkward silence blankets the room."
+            pause
+            echo "3 seconds go by."
+            pause
+            echo "Half the people are trying there hardest not to laugh, the other half is already laughing."
+            if [ "$mizurin_affection" < 0 ]; then
+                echo "Mizurin looks at you quickly"
+                pause
+                echo "\"Wow, you just keep surprising me.\"She says laughing."
+                change_mizurin_affection 3
+            else
+            echo "Mizurin looks at you quickly"
+            pause
+            echo "\"HAHA, your the best! I'm going to be great friends with you!\" She proclaims."
+            ;;
+        *)
+            echo "Please choose 1, 2, 3, or 4."
+            ;;
+        esac
+
+
+
+                    
+         
+         
+
+        ;; 
+3)
+    ;;
+4)
+    ;;
+esac
+
+
+
+
+
+
 fi
 
 
