@@ -1,4 +1,8 @@
 #!/bin/bash
+#Characters affected by reputation
+#Aoi,Kei,Umiko
+#Characters unaffected by reputation
+#Arima,Kirky,Mizurin
 
 # --- VARIABLES ---
 aoi_affection=10
@@ -572,9 +576,9 @@ while true; do
                     pause
                     echo "She looks at you and waits."
                     echo "1) Yea I don't really know anyone here."
-                    echo "2) What I've been here forever."
+                    echo "2) What? I've been here forever."
                     echo "3) Thats because I've been avoiding you this whole time."
-                    echo "4) I hide in the shadows so no one ever sees me I merely allowed you to see my greatness as a matter of curtesy."
+                    echo "4) I hide in the shadows so no one ever sees me, I merely allowed you to see my greatness as a matter of curtesy."
                     read -p "(Choose 1,2,3, or 4)" choice
                     case $choice in
                     1)
@@ -601,7 +605,7 @@ while true; do
                                 ;;
                             3)
                                 change_umiko_affection 1
-                                echo "You sure your not just hoping they'll be hot, your an interesting guy huh!"
+                                echo "Yeah, we both knows thats just what you want to happen. You sure don't hide it! lol."
                                 break
                                 ;;
                             *) 
@@ -644,7 +648,7 @@ while true; do
                                 divider
                                 change_umiko_lie_meter 1
                                 change_umiko_affection 1
-                                echo "What I'm Yumehara Umiko."
+                                echo "What? I'm Yumehara Umiko?"
                                 echo "mmm whatever I'll catch your name later here comes the teacher."
                                 break 4
                                 ;;
@@ -697,7 +701,7 @@ while true; do
                                 divider
                                 change_umiko_lie_meter 1
                                 change_umiko_affection 1
-                                echo "What I'm Yumehara Umiko."
+                                echo "What? I'm Yumehara Umiko?"
                                 echo "mmm whatever I'll catch your name later here comes the teacher."
                                 break 4
                                 ;;
@@ -999,31 +1003,32 @@ if [ "$chose_seat1" = true ]; then
         esac
     done
 else
-divider
-echo "The girl in the corner stands up."
-pause
-echo "Her legs are trembling ever so slightly"
-pause
-echo "All eyes are on her"
-pause
-echo "the sun is shining onto her through the window"
-pause
-echo "She begins to speak"
-pause
-echo "\"Uh hello I'm Yui Nakamura, N-N-Nice to meet you all\""
-pause
-echo "Everyone in the class responded with a simple\"Nice to meet you too\"And then we moved on to the next intro."
-pause
-echo "The teacher began announcing something again"
-pause
-echo "\"Alright next up the seat infront of that one, we will go forward through each lane and then once we reach the end we will go to the right and then backwards, please be ready to introduce yourself once your turn is apporaching.\""
-pause
-echo "The kid infront of Yui Nakamura stood up"
-pause
-echo "\" I'm Arima Yamaguchi, Nice to meet you all! I play soccer and hope I can get to know all of you better\" He says with a clear voice while smiling."
-pause
-echo " And so the intros continued just as so, every once in a while you'd get the awkward kid or the exciting kid but it was overall the same, most importantly your turn had finaly appeared"
-divider
+    divider
+    echo "The girl in the corner stands up."
+    pause
+    echo "Her legs are trembling ever so slightly"
+    pause
+    echo "All eyes are on her"
+    pause
+    echo "the sun is shining onto her through the window"
+    pause
+    echo "She begins to speak"
+    pause
+    echo "\"Uh hello I'm Yui Nakamura, N-N-Nice to meet you all\""
+    pause
+    echo "Everyone in the class responded with a simple\"Nice to meet you too\"And then we moved on to the next intro."
+    pause
+    echo "The teacher began announcing something again"
+    pause
+    echo "\"Alright next up the seat infront of that one, we will go forward through each lane and then once we reach the end we will go to the right and then backwards, please be ready to introduce yourself once your turn is apporaching.\""
+    pause
+    echo "The kid infront of Yui Nakamura stood up"
+    pause
+    echo "\" I'm Arima Yamaguchi, Nice to meet you all! I play soccer and hope I can get to know all of you better\" He says with a clear voice while smiling."
+    pause
+    echo " And so the intros continued just as so, every once in a while you'd get the awkward kid or the exciting kid but it was overall the same, most importantly your turn had finaly appeared"
+    divider
+fi
 case $seat in 
 2)
     echo "All eyes are on you"
@@ -1058,8 +1063,6 @@ case $seat in
                 change_mizurin_affection 2
             fi
             echo "\"Alright next intro.\"The teacher maintains."
-           
-
             ;;
         2)
             change_reputation -4
@@ -1118,20 +1121,121 @@ case $seat in
             echo "Mizurin looks at you quickly"
             pause
             echo "\"HAHA, your the best! I'm going to be great friends with you!\" She proclaims."
+            change_mizurin_affection 2
             ;;
         *)
             echo "Please choose 1, 2, 3, or 4."
             ;;
         esac
-
-
-
-                    
-         
-         
-
-        ;; 
+    done       
+    ;; 
 3)
+    echo "All eyes are on you"
+    pause
+    echo "You stand up and get ready to say what you must"
+    pause
+    echo "But what do you say?"
+    while true; do
+        intro_done=true
+        divider
+        pause
+        echo "Wait a minute thats you, introduce yourself."
+        pause
+        echo "Everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
+        echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
+        echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
+        echo "3) ...... I'm $name"
+        echo "4) As you may already know I'm batman, I lurk in the shadows, and protect the light."
+        read -p "(Choose 1, 2, 3, or 4)" choice 
+        case $choice in
+        1)
+            change_reputation 3
+            divider
+            echo "Everyone turns to you and responds\"Nice to meet you too!\" Many students all over the class reply happily." 
+            if [ "$umiko_affection" < 0 ]; then
+                echo "Yumehara turns and side eyes you."
+                echo "\"Wow, talk about double sided.\"She mutters under her breath while rolling her eyes."
+                pause
+            else
+                echo "Yumehara turns in your direction"
+                pause
+                echo "\"Wow , even more of an impression than you gave off at the start!\" She says eyebrows raised."
+                change_umiko_affection 2
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            ;;
+        2)
+            change_reputation -4
+            echo "Everyone instantly turns there heads and a couple of them even give you looks of disgust. For some reason one guy near the front corner starts smirking, but everyone else didn't seem to find what you said very funny."
+            pause
+            echo "\"uhh what a weirdo.\"You hear some girls whisper."
+            pause           
+            echo "It would seem that this isn't going to be easy to recover from."
+            if [ "$umiko_affection" < 0 ]; then
+                change_umiko_affection -2
+                divider
+                echo "Yumehara quickly turns to your direction along everyone else."
+                pause
+                echo "Such a look of surprise covers her face that anyone could see it."
+                pause
+                echo "\"Its quite obvious why your so unlikable now HA. Good luck recovering from that.\" She laughs quietly."
+            else
+                change_umiko_affection 2
+                echo "Yumehara slowly turns her head and looks at you."
+                pause
+                echo "She puts her hand on her face and slowly closes her eyes and opens them."
+                pause
+                echo "\"Hey $name, by chance do you know what a lie is.\" She lets out an exasperated sigh."
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            ;; 
+        3)
+                   change_reputation -1
+            divider
+            echo "The class goes silent, and you sit back down quickly"
+            if [ "$umiko_affection" < 0 ]; then
+                if [ "$ignored_umiko" = true ];then
+                    echo "Yumehara looks at you quickly, her eyes perk up unexpectedly."
+                    echo "\"Oh! your just a shy boy, I'll forgive you for ignoring me but don't do it again, I'll be your friend!\"She declares."
+                    change_umiko_affection 6
+                else    
+                    echo "Yumehara looks at you."
+                    pause
+                    echo "\"Your quite unsociable huh.\" She says"
+                    pause 
+                fi
+            else
+                echo "Yumehara looks you in the eye"
+                pause
+                echo "\"Ummm that was a good attempt.\" She says lips tight with a slightly forced smile."
+                change_umiko_affection 1
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            ;;
+        4)
+            change_reputation 2
+            divider
+            echo "An awkward silence blankets the room."
+            pause
+            echo "3 seconds go by."
+            pause
+            echo "Half the people are trying there hardest not to laugh, the other half is already laughing."
+            if [ "$umiko_affection" < 0 ]; then
+                echo "Yumehara veers her head in your direction."
+                pause
+                echo "\"I can't comprehend you at all.\"She sighs"
+                change_umiko_affection 2
+            else
+            echo "Yumehera looks at you quickly"
+            pause
+            echo "\"You're always joking aren't you.\" She proclaims."
+            change_umiko_affection 2
+            ;;
+        *)
+            echo "Please choose 1, 2, 3, or 4."
+            ;;
+        esac
+    done
     ;;
 4)
     ;;
