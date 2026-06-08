@@ -1,8 +1,8 @@
 #!/bin/bash
 #Characters affected by reputation
-#Aoi,Kei,Umiko
+#Aoi,Umiko
 #Characters unaffected by reputation
-#Arima,Kirky,Mizurin
+#Arima,Kirky,Mizurin,Kei
 
 # --- VARIABLES ---
 aoi_affection=10
@@ -801,6 +801,7 @@ while true; do
                 done
                 ;;
             2)        
+                talked_to_kei=true
                 divider
                 echo "You turn to the girl next to you, she looks pretty cozy but you decide to wake her up anyways.."
                 pause
@@ -823,7 +824,7 @@ while true; do
                         change_kei_affection 3
                         echo "\"Oh yea I'm at school thanks for reminding me, that would have been embarrassing.\""
                         pause 
-                        echo "\"I'm Kanashiro Kei by the way, please help me in the future as well I tend to be treally tired at school.\" she says while yawning again."
+                        echo "\"I'm Kanashiro Kei by the way, please help me in the future as well, I tend to be treally tired at school.\" she says while yawning again."
                         pause
                         echo "\"Oh here comes the teacher, I guess she really was coming soon.\" She observes."
                         break 3
@@ -843,13 +844,13 @@ while true; do
                         change_kei_affection 1
                         echo "\" Oh thats nice I guess I could get to know you before the teacher gets here.\" She say clearly tired."
                         pause
-                        echo "\" I'm Kanashiro Kei I guess, uh.. My hobbies are napping, dreaming, mmm.. and I guess reading books in the library.\" She says, with her voice cleaerer than last time."
+                        echo "\" I'm Kanashiro Kei I guess, uh.. My hobbies are napping, dreaming, mmm.. and I guess reading books in the library.\" She says, with her voice clearer than last time."
                         pause 
                         echo "\" And you are?\" She asks you, while calmly laying back."
                         while true; do
                             divider
-                            read -p "Tell her your name? (y/n)" answer
-                            if [ "$answer" = "y" ]; then
+                            read -p "Tell her your name? (y/n)" name_answer
+                            if [ "$name_answer" = "y" ]; then
                                 divider
                                 change_kei_affection 1                           
                                 echo "\"I'm $name, nice to meet you Kanashiro.\" You respond."
@@ -1118,10 +1119,13 @@ case $seat in
                 echo "\"Wow, you just keep surprising me.\"She says laughing."
                 change_mizurin_affection 3
             else
-            echo "Mizurin looks at you quickly"
-            pause
-            echo "\"HAHA, your the best! I'm going to be great friends with you!\" She proclaims."
-            change_mizurin_affection 2
+                echo "Mizurin looks at you quickly"
+                pause
+                echo "\"HAHA, your the best! I'm going to be great friends with you!\" She proclaims."
+                change_mizurin_affection 2
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            break
             ;;
         *)
             echo "Please choose 1, 2, 3, or 4."
@@ -1155,7 +1159,6 @@ case $seat in
             if [ "$umiko_affection" < 0 ]; then
                 echo "Yumehara turns and side eyes you."
                 echo "\"Wow, talk about double sided.\"She mutters under her breath while rolling her eyes."
-                pause
             else
                 echo "Yumehara turns in your direction"
                 pause
@@ -1163,6 +1166,7 @@ case $seat in
                 change_umiko_affection 2
             fi
             echo "\"Alright next intro.\"The teacher maintains."
+            break
             ;;
         2)
             change_reputation -4
@@ -1188,9 +1192,10 @@ case $seat in
                 echo "\"Hey $name, by chance do you know what a lie is.\" She lets out an exasperated sigh."
             fi
             echo "\"Alright next intro.\"The teacher maintains."
+            break
             ;; 
         3)
-                   change_reputation -1
+            change_reputation -1
             divider
             echo "The class goes silent, and you sit back down quickly"
             if [ "$umiko_affection" < 0 ]; then
@@ -1211,6 +1216,7 @@ case $seat in
                 change_umiko_affection 1
             fi
             echo "\"Alright next intro.\"The teacher maintains."
+            break
             ;;
         4)
             change_reputation 2
@@ -1226,10 +1232,13 @@ case $seat in
                 echo "\"I can't comprehend you at all.\"She sighs"
                 change_umiko_affection 2
             else
-            echo "Yumehera looks at you quickly"
-            pause
-            echo "\"You're always joking aren't you.\" She proclaims."
-            change_umiko_affection 2
+                echo "Yumehera looks at you quickly"
+                pause
+                echo "\"You're always joking aren't you.\" She proclaims."
+                change_umiko_affection 2
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            break
             ;;
         *)
             echo "Please choose 1, 2, 3, or 4."
@@ -1238,15 +1247,163 @@ case $seat in
     done
     ;;
 4)
-    ;;
+    echo "All eyes are on you"
+    pause
+    echo "You stand up and get ready to say what you must"
+    pause
+    echo "But what do you say?"
+    while true; do
+        intro_done=true
+        divider
+        pause
+        echo "Wait a minute thats you, introduce yourself."
+        pause
+        echo "Everyones eyes are on you, awaiting what the first person will say, what kind of first impression will you make?"
+        echo "1) Hello, everyone I'm $name, I love playing sports of all kinds and getting to know new people, I look forward to a great year with you all!"
+        echo "2) Uh.. I'm $name I like watching anime.. and gooning!...."
+        echo "3) ...... I'm $name"
+        echo "4) As you may already know I'm batman, I lurk in the shadows, and protect the light."
+        read -p "(Choose 1, 2, 3, or 4)" choice 
+        case $choice in
+        1)
+            change_reputation 3
+            divider
+            echo "Everyone turns to you and responds\"Nice to meet you too!\" Many students all over the class reply happily." 
+            if [ "$talked_to_kei" = true ]; then
+                if [ "$kei_affection" < 0 ]; then
+                    echo "Kanashiro wakes up at the sound of your intro."
+                    pause
+                    echo "\"So your $name?\"She says tilting her head slightly."
+                    pause
+                    echo "She yawns\"it looks like you can be a nice guy sometimes\"She yawns again."
+                    pause
+                    echo "She looks at you once more than rests her head on the table once again."    
+                else
+                    if [ "$name_answer" = "y" ]; then
+                        echo "\"Your more popular than I thought you'd be\" She yawns."
+                        change_kei_affection 1
+                    elif [ "$name_answer" = "n" ]; then
+                        echo "\"Ok so your $name, now that I caught your name ima head back to sleep\"She mutters while yawning, her eyes are bassically half open."
+                        pause
+                        echo "After about 10 seconds she was out cold on her desk."                   
+                    fi
+                fi
+            fi           
+            if [ "$talked_to_kirky" = true ]; then
+                if [ "$kirky_affection" < 0 ]; then
+                    echo "Kirky looks at you after your intro is over."
+                    pause
+                    echo "Once you look back at him he quickly picks up his manga and keeps reading."
+                else
+                    echo "Kirky glances at you"
+                    pause
+                    echo "Once everyone is settled down he waves over your attention."
+                    pause
+                    echo "\"Theres no way your a manga fan, not if you managed to get such a good reaction, if you truly are a fellow otaku teach me your ways.\"He pleads."
+                    pause
+                    echo "The teacher looks at Kirky and he quickly turns away and starts reading again."
+                    pause
+                    echo "\"We'll continue you this later.\"he whispers."       
+                fi
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            break
+            ;;
+        2)
+            change_reputation -4
+            echo "Everyone instantly turns there heads and a couple of them even give you looks of disgust. For some reason one guy near the front corner starts smirking, but everyone else didn't seem to find what you said very funny."
+            pause
+            echo "\"uhh what a weirdo.\"You hear some girls whisper."
+            pause           
+            echo "It would seem that this isn't going to be easy to recover from."
+            if [ "$talked_to_kei" = true ]; then
+                if [ "$kei_affection" < 0 ]; then
+                    divider
+                    echo "Kanashiro slowly wakes up"
+                    pause
+                    echo "\"I wonder what everyone is whispering about.\"She says yawning."
+                    pause
+                    echo "\"Meh whatever ima just head back to sleep.\" She mutters to herself."
+                else
+                    if [ "$name_answer" = "y" ]; then
+                        divider
+                        echo "Kanashiro wakes up at the sound of everyones whispers."
+                        echo "She looks at you."                       
+                        echo "\"What did you say to get that kind of reaction.\" She yawns."
+                        echo "\"Oh no, I didn't catch your name, oh well, I'll just get it another time.\" She declares weakly."
+                    elif [ "$name_answer" = "n" ]; then
+                        divider
+                        echo "Kanashiro wakes up at the sound of everyones whispers."
+                        pause
+                        echo "She looks at you."                       
+                        pause
+                        echo "\"What did you say to get that kind of reaction.\" She yawns."
+                        pause
+                        echo "\"Oh no, I didn't catch your name, oh well, I'll just get it another time.\" She declares weakly."
+                        pause
+                        echo "After about 10 seconds she was out cold on her desk."
+                    fi
+                fi
+            fi
+            if [ "$talked_to_kirky" = true ]; then 
+                if [ "$kirky_affection" < 0 ]; then
+                    change_kirky_affection 4
+                    divider
+                    echo "Kirky turns to you."
+                    pause
+                    echo "\"At first when you interupted my reading I didn't really like you but now I see the truth. Your just like me!\"He says enthusiastically."
+                    pause
+                    echo "\"I'll talk to you later my fellow otaku.\" He parts."
+                else
+                    change_kirky_affection 4
+                    echo "Kirky turns to you, with a big grin plastered on his face."
+                    pause
+                    echo "\"Your a brave soul, my fellow otaku, the rest of the class may not like you but you have me your to be brother in arms.\"He says powerfully, but also quietly."
+                fi
+            fi        
+            echo "\"Alright next intro.\"The teacher maintains."
+            break
+            ;;
+        3)
+            change_reputation -1
+            divider
+            echo "The class goes silent, and you sit back down quickly"
+            if [ "$talked_to_kei" = true ]; then
+                echo "Kanashiro shuffles a little in her seat but seems to still be sleeping."
+            fi
+            if [ "$talked_to_kirky" = true ]; then
+                change_kirky_affection 1               
+                echo "Kirky turns his attention to you"
+                pause
+                echo "\"That went just about as well as my intro. I guess.. you are a fellow otaku.\"He noted."
+            fi
+            echo "\"Alright next intro.\"The teacher maintains."
+            break
+            ;;
+        4)
+            change_reputation 2
+            divider
+            echo "An awkward silence blankets the room."
+            pause
+            echo "3 seconds go by."
+            pause
+            echo "Half the people are trying there hardest not to laugh, the other half is already laughing."
+            if [ "$talked_to_kei" = true ]; then
+                if [ "$mizurin_affection" < 0 ]; then
+                    echo "Mizurin looks at you quickly"
+                    pause
+                    echo "\"Wow, you just keep surprising me.\"She says laughing."
+                    change_mizurin_affection 3
+                else
+                    echo "Mizurin looks at you quickly"
+                    pause
+                    echo "\"HAHA, your the best! I'm going to be great friends with you!\" She proclaims."
+                    change_mizurin_affection 2
+                fi
+                echo "\"Alright next intro.\"The teacher maintains."
+                break
+#Finish the number 4 right above this comment.
 esac
-
-
-
-
-
-
-fi
 
 
 
